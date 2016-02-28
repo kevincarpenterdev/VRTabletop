@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UnitController : MonoBehaviour {
+public class Spectator : Human {
 
 	// Use this for initialization
 	void Start () {
