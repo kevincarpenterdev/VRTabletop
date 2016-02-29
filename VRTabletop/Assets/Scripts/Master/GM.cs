@@ -3,24 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 
 using VRTabletop.Pawns;
+using VRTabletop.Clients;
 
-public class GM : MonoBehaviour {
+namespace VRTabletop {
+    public class GM : MonoBehaviour {
 
-    //"Global" Variables
-    Dictionary<int , BasePawn> Pawns_In_Play;
-    Dictionary<int , Player> Players;
+        //"Global" Variables
+        Dictionary<int , BasePawn> Pawns_In_Play;
+        Dictionary<int , Player> Players;
 
-    Dictionary<int , Human> Humans; //insert in a seperate controller that controls server?
+        Dictionary<int , Human> Humans; //insert in a seperate controller that controls server?
 
+        // Use this for initialization
+        void Start() {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    //listen for server
-        //If got broadcast, move pawns/update states
-	}
+        }
+
+        // Update is called once per frame
+        void Update() {
+            //listen for server
+            //If got broadcast, move pawns/update states
+        }
+
+        void ApplyResponse(Player P) {
+
+        }
+
+        void ApplyResponse() {
+
+        }
+
+        void SendCommand() {
+            //Server Send ze command!
+        }
+    }
 }
+

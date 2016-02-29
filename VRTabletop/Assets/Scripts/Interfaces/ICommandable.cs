@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-namespace VRTabletop.Interfaces {
+namespace VRTabletop {
     public interface ICommandable {
         bool ValidateCommand(); //Client side validation
 

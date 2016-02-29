@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-using VRTabletop.Interfaces;
 
 namespace VRTabletop.Pawns {
     public class BasePawn : ICommandable {
@@ -11,7 +10,6 @@ namespace VRTabletop.Pawns {
             //What kind of command are we passing through?
             bool cmd = grabCommand();
             if (cmd) {
-                ExecuteCommand();
                 return true;
             } else {
                 ResetPostion();
