@@ -4,31 +4,55 @@ using System;
 
 namespace VRTabletop.Pawns {
     public class BasePawn : ICommandable {
+        public bool ValidateMode { get; private set; }
+        CommandType C;
 
-        public bool ValidateCommand() {
-            Debug.Log("validate!");
-            //What kind of command are we passing through?
-            bool cmd = grabCommand();
-            if (cmd) {
-                return true;
-            } else {
-                ResetPostion();
-                return false;
+        // Update is called once per frame
+        void Update() {
+            if(ValidateMode) {
+                ValidateCommand();
             }
 
         }
 
-        protected bool grabCommand() {
-            return false;
+
+        public bool ValidateCommand() {
+
+            switch (C) {
+                case CommandType.Movement:
+                    PawnValidator.ValidatePosition(this);
+                    break;
+                case CommandType.Shooting:
+                    PawnValidator.ValidateShot(this);
+                    break;
+                case CommandType.NonTargetAbility:
+                    PawnValidator.ValidateAbility();
+                    break;
+                default:
+                    Debug.Log("Nothin here!");
+                    break;
+            }
+
+            throw new NotImplementedException();
+
+            /*if (cmd is valid) {
+                return true;
+            } else {
+                ResetPostion();
+                return false;
+            } */
+
         }
 
         private void ResetPostion() {
             Debug.Log("I'mma resettin mah position!");
+            throw new NotImplementedException();
             //Set old transform to the 
         }
 
         public void ExecuteCommand() {
             Debug.Log("I'mma followin your orders!");
+            throw new NotImplementedException();
             //DO IT!
         }
 
