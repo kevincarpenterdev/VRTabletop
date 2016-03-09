@@ -4,6 +4,7 @@ using System;
 
 namespace VRTabletop.Pawns {
     public class BasePawn : ICommandable {
+        public int ID { get;  private set; }
         public bool ValidateMode { get; private set; }
         CommandType C;
 
@@ -17,16 +18,17 @@ namespace VRTabletop.Pawns {
 
 
         public bool ValidateCommand() {
+            bool valid = false;
 
             switch (C) {
                 case CommandType.Movement:
-                    PawnValidator.ValidatePosition(this);
+                    valid = PawnValidator.ValidatePosition(this);
                     break;
                 case CommandType.Shooting:
-                    PawnValidator.ValidateShot(this);
+                    valid = PawnValidator.ValidateShot(this);
                     break;
                 case CommandType.NonTargetAbility:
-                    PawnValidator.ValidateAbility();
+                    valid = PawnValidator.ValidateAbility();
                     break;
                 default:
                     Debug.Log("Nothin here!");
@@ -34,6 +36,7 @@ namespace VRTabletop.Pawns {
             }
 
             throw new NotImplementedException();
+            return valid;
 
             /*if (cmd is valid) {
                 return true;
@@ -42,6 +45,10 @@ namespace VRTabletop.Pawns {
                 return false;
             } */
 
+        }
+
+        public void SetCommand(CommandType T) {
+            C = T;
         }
 
         private void ResetPostion() {

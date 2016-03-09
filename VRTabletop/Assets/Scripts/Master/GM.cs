@@ -6,6 +6,7 @@ using VRTabletop.Pawns;
 using VRTabletop.Clients;
 
 namespace VRTabletop {
+    //Due for a refactor?
     public class GM : MonoBehaviour {
 
         //"Global" Variables
@@ -25,10 +26,7 @@ namespace VRTabletop {
             //If got broadcast, move pawns/update states
         }
 
-        void ApplyResponse(Player P) {
-
-        }
-
+        //Grab the response from the server and apply it
         void ApplyResponse() {
 
         }
