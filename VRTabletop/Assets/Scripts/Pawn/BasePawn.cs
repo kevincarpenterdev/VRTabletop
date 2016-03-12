@@ -3,10 +3,19 @@ using System.Collections;
 using System;
 
 namespace VRTabletop.Pawns {
-    public class BasePawn : ICommandable {
+    public class BasePawn : MonoBehaviour, ICommandable {
+        //Data Stuff
         public int ID { get;  private set; }
         public bool ValidateMode { get; private set; }
         CommandType C;
+
+        //Game Stuff
+        public int HP;
+        //TODO Impliment other stats
+
+        //Unity Stuff
+        [SerializeField]
+        protected CapsuleCollider CheckCollider;
 
         // Update is called once per frame
         void Update() {
