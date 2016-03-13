@@ -16,7 +16,8 @@ namespace VRTabletop.Pawns {
         //Unity Stuff
         [SerializeField]
         protected CapsuleCollider CheckCollider;
-
+        [SerializeField]
+        protected CheckShot CS;
         // Update is called once per frame
         void Update() {
             if(ValidateMode) {
