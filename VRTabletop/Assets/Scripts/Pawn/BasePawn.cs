@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using VRTabletop.Communications;
 
 namespace VRTabletop.Pawns {
     public class BasePawn : MonoBehaviour, ICommandable {
@@ -33,28 +34,20 @@ namespace VRTabletop.Pawns {
             switch (C) {
                 case CommandType.Movement:
                     valid = PawnValidator.ValidatePosition(this);
+                    throw new NotImplementedException();
                     break;
                 case CommandType.Shooting:
-                    valid = PawnValidator.ValidateShot(this);
+                    valid = PawnValidator.ValidateShot(CS);
                     break;
                 case CommandType.NonTargetAbility:
                     valid = PawnValidator.ValidateAbility();
+                    throw new NotImplementedException();
                     break;
                 default:
                     Debug.Log("Nothin here!");
                     break;
             }
-
-            throw new NotImplementedException();
             return valid;
-
-            /*if (cmd is valid) {
-                return true;
-            } else {
-                ResetPostion();
-                return false;
-            } */
-
         }
 
         public void SetCommand(CommandType T) {

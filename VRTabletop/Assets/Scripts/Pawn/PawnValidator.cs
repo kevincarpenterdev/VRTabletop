@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using VRTabletop.Communications;
 
 namespace VRTabletop.Pawns {
     public static class PawnValidator {
