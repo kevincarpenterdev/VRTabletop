@@ -3,12 +3,12 @@ using System;
 
 namespace VRTabletop.Communications {
     public static class OrderFormatter {
-        public static Order serialize() {
+        public static string serialize(Order o) {
             throw new NotImplementedException();
 
         }
             
-        public static  Order deserialize() {
+        public static  Response deserialize() {
             throw new NotImplementedException();
         }
     }

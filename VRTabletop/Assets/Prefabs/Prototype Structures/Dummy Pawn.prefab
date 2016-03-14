@@ -25,6 +25,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 491020}
+  - 114: {fileID: 11482030}
   m_Layer: 0
   m_Name: Target Designator
   m_TagString: Untagged
@@ -256,6 +257,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 1
   CheckCollider: {fileID: 13630960}
+  CS: {fileID: 0}
 --- !u!114 &11451146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -269,13 +271,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coll: {fileID: 0}
   Tr: {fileID: 0}
+--- !u!114 &11482030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 109340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8e5815b2345d0c458c2e7e3edd45b45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Test: 0
+  Laser: {fileID: 12036558}
 --- !u!120 &12036558
 LineRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 137800}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:

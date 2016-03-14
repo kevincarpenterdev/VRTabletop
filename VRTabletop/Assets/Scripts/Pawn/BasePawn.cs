@@ -22,9 +22,12 @@ namespace VRTabletop.Pawns {
         // Update is called once per frame
         void Update() {
             if(ValidateMode) {
-                ValidateCommand();
+                bool isValid;
+                isValid = ValidateCommand();
+                if (!isValid && C == CommandType.Movement) {
+                    ResetPostion();
+                }
             }
-
         }
 
 
@@ -34,14 +37,12 @@ namespace VRTabletop.Pawns {
             switch (C) {
                 case CommandType.Movement:
                     valid = PawnValidator.ValidatePosition(this);
-                    throw new NotImplementedException();
                     break;
                 case CommandType.Shooting:
                     valid = PawnValidator.ValidateShot(CS);
                     break;
                 case CommandType.NonTargetAbility:
                     valid = PawnValidator.ValidateAbility();
-                    throw new NotImplementedException();
                     break;
                 default:
                     Debug.Log("Nothin here!");
@@ -60,7 +61,15 @@ namespace VRTabletop.Pawns {
             //Set old transform to the 
         }
 
-        public void ExecuteCommand() {
+        public void ExecuteCommand(Response R) {
+            HP += R.HPChange;
+            if (HP<=0) {
+                Destroy(this);
+                return;
+            }
+            transform.position = R.getNewPosition();
+
+
             Debug.Log("I'mma followin your orders!");
             throw new NotImplementedException();
             //DO IT!
