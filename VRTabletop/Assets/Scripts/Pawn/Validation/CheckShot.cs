@@ -2,7 +2,7 @@
 using System.Collections;
 using VRTabletop.Pawns;
 
-namespace VRTabletop.Communications {
+namespace VRTabletop.Pawns.Validation {
     public class CheckShot : MonoBehaviour {
         [SerializeField]
         protected bool Test;

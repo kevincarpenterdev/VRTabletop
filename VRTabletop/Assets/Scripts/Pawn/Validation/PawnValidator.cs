@@ -3,7 +3,7 @@ using System.Collections;
 using System;
 using VRTabletop.Communications;
 
-namespace VRTabletop.Pawns {
+namespace VRTabletop.Pawns.Validation {
     public static class PawnValidator {
 
         
