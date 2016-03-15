@@ -8,11 +8,19 @@ namespace VRTabletop.Pawns.Validation {
         [SerializeField] Transform PrevTr;
         bool valid = true;
 
+        public bool Validate() {
+            if(valid) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         public void Cancel() {
             transform.position = PrevTr.position;
         }
 
-        public Transform Validate() {
+        public Transform GrabTransform() {
             if(valid) {
                 return transform;
             } else {

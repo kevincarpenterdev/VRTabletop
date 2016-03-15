@@ -7,12 +7,8 @@ namespace VRTabletop.Pawns.Validation {
     public static class PawnValidator {
 
         
-        public static bool ValidatePosition(BasePawn P) {
-            /*TODO 
-                Grab BasePawn's "Check Collider"
-                See if it hit anything
-            */  
-            throw new NotImplementedException();
+        public static bool ValidatePosition(CheckCollider C) {
+            return C.Validate();
         }
 
         public static bool ValidateShot(CheckShot C) {
