@@ -18,7 +18,7 @@ namespace VRTabletop.Pawns {
 
         //Unity Stuff
         [SerializeField]
-        protected CapsuleCollider CheckCollider;
+        protected CheckCollider CheckCollider;
         [SerializeField]
         protected CheckShot CS;
         void Start () {
@@ -36,7 +36,7 @@ namespace VRTabletop.Pawns {
 
             switch (C) {
                 case CommandType.Movement:
-                    isValid = PawnValidator.ValidatePosition(this);
+                    isValid = PawnValidator.ValidatePosition(CheckCollider);
                     break;
                 case CommandType.Shooting:
                     isValid = PawnValidator.ValidateShot(CS);
