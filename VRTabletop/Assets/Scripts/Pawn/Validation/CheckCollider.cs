@@ -5,10 +5,20 @@ using System.Collections;
 namespace VRTabletop.Pawns.Validation {
     public class CheckCollider : MonoBehaviour {
         [SerializeField] Collider coll;
-        [SerializeField] Transform Tr;
         [SerializeField] Transform PrevTr;
         bool valid = true;
 
+        public void Cancel() {
+            transform.position = PrevTr.position;
+        }
+
+        public Transform Validate() {
+            if(valid) {
+                return transform;
+            } else {
+                return null;
+            }
+        }
 
         void OnTriggerStay(Collider Other) {
 
