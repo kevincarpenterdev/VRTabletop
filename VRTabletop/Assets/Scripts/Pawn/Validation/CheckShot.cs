@@ -10,7 +10,7 @@ namespace VRTabletop.Pawns.Validation {
 
         // Use this for initialization
         void Start() {
-
+            Test = true;
         }
 
         public int GrabTargetID() {
@@ -18,13 +18,14 @@ namespace VRTabletop.Pawns.Validation {
         }
 
         public GameObject CastRay() {
-            Vector3 Direction = transform.forward;
-            Ray ray = new Ray(transform.position , Direction);
+            //Vector3 Direction = transform.position - transform.forward;
+            Ray ray = new Ray(transform.position , transform.forward);
             RaycastHit h;
 
             if(Test) TurnOnLaser(ray);
             //Adjust "10" as nessecary
             if (Physics.Raycast(ray , out h , 10)) {
+                if (Test) Laser.SetPosition(1 , h.point);
                 BasePawn B = h.collider.gameObject.GetComponent<BasePawn>();
                 if (B != null) {
                     return h.collider.gameObject;

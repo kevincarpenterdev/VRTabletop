@@ -28,7 +28,7 @@ namespace VRTabletop.Pawns {
           
         }*/
 
-
+        //Run this in an update loop
         public void RunValidation() {
 
             switch (C) {
@@ -48,6 +48,7 @@ namespace VRTabletop.Pawns {
             
         }
 
+        //Called once
         public Order SendOrder() {
             if(isValid) {
                 switch (C) {
@@ -60,7 +61,9 @@ namespace VRTabletop.Pawns {
                     default:
                         Debug.Log("Nothin here!");
                         return null;
-                }
+                }  
+            } else {
+                Debug.Log("This is not a valid command");
             }
             return null;
         }
