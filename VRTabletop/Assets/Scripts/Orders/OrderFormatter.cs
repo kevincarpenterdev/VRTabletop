@@ -8,7 +8,7 @@ namespace VRTabletop.Communications {
 
         }
             
-        public static  Response deserialize() {
+        public static  Response deserialize(string ResponseString) {
             throw new NotImplementedException();
         }
     }

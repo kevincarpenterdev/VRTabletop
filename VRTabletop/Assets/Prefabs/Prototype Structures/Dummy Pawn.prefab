@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!1 &105380
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -65,6 +65,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &144290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 427960}
+  m_Layer: 0
+  m_Name: MoveChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &150128
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,6 +126,19 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
+  m_Father: {fileID: 427960}
+  m_RootOrder: 0
+--- !u!4 &427960
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144290}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 410210}
   m_Father: {fileID: 449744}
   m_RootOrder: 2
 --- !u!4 &444432
@@ -137,7 +165,7 @@ Transform:
   m_Children:
   - {fileID: 465882}
   - {fileID: 444432}
-  - {fileID: 410210}
+  - {fileID: 427960}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &465882
@@ -256,8 +284,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 1
-  CheckCollider: {fileID: 13630960}
-  CS: {fileID: 0}
+  CheckCollider: {fileID: 11451146}
+  CS: {fileID: 11482030}
 --- !u!114 &11451146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -270,7 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: {fileID: 0}
-  Tr: {fileID: 0}
+  PrevTr: {fileID: 0}
 --- !u!114 &11482030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -284,6 +312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Test: 0
   Laser: {fileID: 12036558}
+  Target: {fileID: 0}
 --- !u!120 &12036558
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -314,8 +343,8 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
   m_Parameters:
-    startWidth: 1
-    endWidth: 1
+    startWidth: 0.1
+    endWidth: 0.1
     m_StartColor:
       serializedVersion: 2
       rgba: 4294967295

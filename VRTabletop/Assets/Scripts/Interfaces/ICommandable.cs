@@ -5,7 +5,9 @@ using VRTabletop.Communications;
 namespace VRTabletop {
     public interface ICommandable {
 
-        void ValidateCommand(); //Client side validation
+        void RunValidation();
+
+        Order SendOrder(); //Client side validation
 
         void ExecuteCommand(Response R); //Updates the state and informs the server
     }

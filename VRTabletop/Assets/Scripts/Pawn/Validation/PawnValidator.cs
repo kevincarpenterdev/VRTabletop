@@ -26,7 +26,6 @@ namespace VRTabletop.Pawns.Validation {
             */
             throw new NotImplementedException();
         }
-    
     }
 }
 

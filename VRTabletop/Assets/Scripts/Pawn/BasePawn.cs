@@ -7,8 +7,7 @@ using VRTabletop.Pawns.Validation;
 namespace VRTabletop.Pawns {
     public class BasePawn : MonoBehaviour, ICommandable {
         //Data Stuff
-        public int ID { get;  private set; }
-        public bool ValidateMode { get; private set; }
+        [SerializeField] public int ID { get;  private set; }
         public bool isValid { get; private set; }
         CommandType C;
 
@@ -17,22 +16,20 @@ namespace VRTabletop.Pawns {
         //TODO Impliment other stats
 
         //Unity Stuff
-        [SerializeField]
-        protected CheckCollider CheckCollider;
-        [SerializeField]
-        protected CheckShot CS;
+        [SerializeField] protected CheckCollider CheckCollider;
+        [SerializeField] protected CheckShot CS;
+
         void Start () {
             isValid = false;
         }
+
         // Update is called once per frame
-        void Update() {
-            if(ValidateMode) {
-
-            }
-        }
+        /*void Update() {
+          
+        }*/
 
 
-        public void ValidateCommand() {
+        public void RunValidation() {
 
             switch (C) {
                 case CommandType.Movement:
@@ -51,6 +48,23 @@ namespace VRTabletop.Pawns {
             
         }
 
+        public Order SendOrder() {
+            if(isValid) {
+                switch (C) {
+                    case CommandType.Movement:
+                        return new Order(this.ID , CheckCollider.GrabTransform());
+                    case CommandType.Shooting:
+                        return new Order(CS.GrabTargetID() , 100);
+                    case CommandType.NonTargetAbility:
+                        throw new NotImplementedException();
+                    default:
+                        Debug.Log("Nothin here!");
+                        return null;
+                }
+            }
+            return null;
+        }
+
         public void SetCommand(CommandType T) {
             C = T;
         }
@@ -64,11 +78,7 @@ namespace VRTabletop.Pawns {
                 return;
             }
             transform.position = R.getNewPosition();
-
-
-            Debug.Log("I'mma followin your orders!");
-            throw new NotImplementedException();
-            //DO IT!
+            //And anything else we need to apply
         }
 
     }
