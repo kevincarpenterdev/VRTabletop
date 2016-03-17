@@ -33,6 +33,7 @@ public class PrototypeController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         m = Mode.None;
+        Sight.SetActive(false);
 	}
 
     // Update is called once per frame
@@ -47,13 +48,13 @@ public class PrototypeController : MonoBehaviour {
             m = Mode.MoveMode;
             ControlledPawn.SetCommand(CommandType.Movement);
             OverviewCam.gameObject.SetActive(true);
-            Sight.SetActive(false);
+            //Sight.SetActive(false);
             PawnCam.gameObject.SetActive(false);
         } else if (Input.GetKeyDown(KeyCode.F2)) {
             m = Mode.ShootMode;
             ControlledPawn.SetCommand(CommandType.Shooting);
             OverviewCam.gameObject.SetActive(false);
-            Sight.SetActive(true);
+            //Sight.SetActive(true);
             PawnCam.gameObject.SetActive(true);
         }
     }
@@ -72,7 +73,10 @@ public class PrototypeController : MonoBehaviour {
                 //Set Player Cam inactive
                 VR = VRState.InPawn;
             } else {
-                if (Input.GetKeyDown(KeyCode.Q)) {
+                if(Input.GetKey(KeyCode.Q)) {
+                    ControlledPawn.LookAtPawn(TargetPawn);
+                }
+                /*if (Input.GetKeyDown(KeyCode.Q)) {
                     //Rotate Left
                 }
                 if (Input.GetKeyDown(KeyCode.E)) {
@@ -83,19 +87,19 @@ public class PrototypeController : MonoBehaviour {
                 }
                 if(Input.GetKeyDown(KeyCode.F)) {
                     //rotateUp
-                }
+                }*/
             }
         } else if (m== Mode.MoveMode) {
             float x = 0f;
             float z = 0f;
             if(Input.GetKeyDown(KeyCode.W)) {
-                x += speed;
+                x -= speed;
             }
             if(Input.GetKeyDown(KeyCode.A)) {
                 z -= speed;
             }
             if(Input.GetKeyDown(KeyCode.S)) {
-                x -= speed;
+                x += speed;
             }
             if(Input.GetKeyDown(KeyCode.D)) {
                 z += speed;

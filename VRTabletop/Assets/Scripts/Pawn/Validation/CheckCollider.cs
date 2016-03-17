@@ -4,11 +4,12 @@ using System.Collections;
 
 namespace VRTabletop.Pawns.Validation {
     public class CheckCollider : MonoBehaviour {
-        [SerializeField] Collider coll;
-        [SerializeField] Transform PrevTr;
-        [SerializeField] Material Valid;
-        [SerializeField] Material Invalid;
-        [SerializeField] CharacterController CC;
+        [SerializeField] protected Collider coll;
+        [SerializeField] protected Transform PrevTr;
+        [SerializeField] protected Material ValidMat;
+        [SerializeField] protected Material InvalidMat;
+        [SerializeField] protected CharacterController CC;
+        [SerializeField] protected GameObject VisualCheck;
 
 
 
@@ -26,6 +27,14 @@ namespace VRTabletop.Pawns.Validation {
             transform.position = PrevTr.position;
         }
 
+        public void startValidation() {
+            VisualCheck.SetActive(true);
+        }
+
+        public void StopValidation() {
+            VisualCheck.SetActive(false);
+        }
+
         public Transform GrabTransform() {
             if(valid) {
                 return transform;
@@ -41,6 +50,7 @@ namespace VRTabletop.Pawns.Validation {
 
             if (PawnCheck != null || OCheck != null) {
                 valid = false;
+                VisualCheck.GetComponent<MeshRenderer>().material = InvalidMat;
             }
         }
 
@@ -50,10 +60,11 @@ namespace VRTabletop.Pawns.Validation {
 
             if (PawnCheck == null && OCheck == null) {
                 valid = true;
+                VisualCheck.GetComponent<MeshRenderer>().material = ValidMat;
             }
         }
         public void MoveChecker(float x, float z) {
-            //CC.Move(new Vector3(x ,0f, z));
+            CC.Move(new Vector3(x ,0f, z));
         }
     }
 }

@@ -116,7 +116,8 @@ MonoBehaviour:
   TargetPawn: {fileID: 1249523720}
   OverviewCam: {fileID: 732502772}
   PawnCam: {fileID: 1555391745}
-  speed: 0
+  Sight: {fileID: 803759628}
+  speed: 1.5
   VR: 0
   m: 0
 --- !u!4 &369830210
@@ -130,7 +131,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1 &481363648
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +217,7 @@ RectTransform:
   m_Children:
   - {fileID: 803759629}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -307,7 +308,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &752199510
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,10 +392,10 @@ Transform:
   m_GameObject: {fileID: 752199510}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.81, z: 2.36}
-  m_LocalScale: {x: 4, y: 2, z: 1}
+  m_LocalScale: {x: 4, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!1 &803759628
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,9 +463,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 816629924}
   - 20: {fileID: 816629923}
-  - 124: {fileID: 816629922}
-  - 92: {fileID: 816629921}
-  - 81: {fileID: 816629920}
+  - 92: {fileID: 816629920}
   m_Layer: 0
   m_Name: UICamera
   m_TagString: Untagged
@@ -472,21 +471,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &816629920
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 816629919}
-  m_Enabled: 1
---- !u!92 &816629921
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 816629919}
-  m_Enabled: 1
---- !u!124 &816629922
+--- !u!92 &816629920
 Behaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -538,7 +523,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
 --- !u!1 &1126648001
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +584,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1001 &1187643326
 Prefab:
   m_ObjectHideFlags: 0
@@ -637,11 +622,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 449744, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 136212, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
       propertyPath: m_Name
       value: Dummy Pawn (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 192468, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
@@ -712,7 +701,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!20 &1555391745 stripped
 Camera:
   m_PrefabParentObject: {fileID: 2015900, guid: 9c8c7638e4bb52143b7f82b15764c6a2,
@@ -735,7 +724,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 449744, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -7.11
       objectReference: {fileID: 0}
     - target: {fileID: 449744, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
       propertyPath: m_LocalRotation.x
@@ -755,7 +744,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 449744, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 410210, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}

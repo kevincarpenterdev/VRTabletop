@@ -11,6 +11,8 @@ namespace VRTabletop.Pawns {
         public bool isValid { get; private set; }
         CommandType C;
 
+        [SerializeField]protected GameObject Head;
+        
         //Game Stuff
         public int HP;
         //TODO Impliment other stats
@@ -27,6 +29,26 @@ namespace VRTabletop.Pawns {
         /*void Update() {
           
         }*/
+
+        /*ValidationStartups
+        public void startValidation() {
+            switch (C) {
+                case CommandType.Movement:
+                    isValid = PawnValidator.ValidatePosition(CheckCollider);
+                    break;
+                case CommandType.Shooting:
+                    Debug.Log("No Validation needed!");
+                    break;
+                case CommandType.NonTargetAbility:
+                    throw new NotImplementedException();
+                    break;
+                default:
+                    Debug.Log("Nothin here!");
+                    break;
+            }
+        }*/
+
+
 
         //Run this in an update loop
         public void RunValidation() {
@@ -53,12 +75,20 @@ namespace VRTabletop.Pawns {
             CheckCollider.MoveChecker(x,z);
         }
 
+        //And Trash this method
+        public void LookAtPawn(BasePawn P) {
+            Head.transform.LookAt(P.transform);
+        }
+
         //Called once
         public Order SendOrder() {
             if(isValid) {
                 switch (C) {
                     case CommandType.Movement:
-                        return new Order(ID , CheckCollider.GrabTransform());
+                        Order O = new Order(ID , CheckCollider.GrabTransform());
+                        CheckCollider.StopValidation();
+                        CheckCollider.Cancel();
+                        return O;
                     case CommandType.Shooting:
                         return new Order(CS.GrabTargetID() , 100 , transform.position);
                     case CommandType.NonTargetAbility:

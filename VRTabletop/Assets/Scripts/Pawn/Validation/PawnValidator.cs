@@ -8,6 +8,7 @@ namespace VRTabletop.Pawns.Validation {
 
         
         public static bool ValidatePosition(CheckCollider C) {
+            C.startValidation();
             return C.Validate();
         }
 
