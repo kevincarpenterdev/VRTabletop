@@ -11,6 +11,7 @@ public class PrototypeController : MonoBehaviour {
 
     public Camera OverviewCam;
     public Camera PawnCam;
+    public GameObject Sight;
 
     [SerializeField] float speed;
 
@@ -46,11 +47,13 @@ public class PrototypeController : MonoBehaviour {
             m = Mode.MoveMode;
             ControlledPawn.SetCommand(CommandType.Movement);
             OverviewCam.gameObject.SetActive(true);
+            Sight.SetActive(false);
             PawnCam.gameObject.SetActive(false);
         } else if (Input.GetKeyDown(KeyCode.F2)) {
             m = Mode.ShootMode;
             ControlledPawn.SetCommand(CommandType.Shooting);
             OverviewCam.gameObject.SetActive(false);
+            Sight.SetActive(true);
             PawnCam.gameObject.SetActive(true);
         }
     }
@@ -106,8 +109,9 @@ public class PrototypeController : MonoBehaviour {
             Order O = ControlledPawn.SendOrder();
             if(O != null) {
                 //Serialize/Deserialize Server simulation
-                string OrderString = OrderFormatter.serialize(O);
-                Response R = OrderFormatter.deserialize(OrderString);
+                /*string OrderString = OrderFormatter.serialize(O);
+                Response R = OrderFormatter.deserialize(OrderString); */
+                Response R = new Response(O.TarX, O.TarY, O.TarZ, O.HPChange, O.TargetID);
                 ExecuteOrder(R);
             }
         }
@@ -118,10 +122,5 @@ public class PrototypeController : MonoBehaviour {
         } else if (R.AppliedID == 1) {
             TargetPawn.ExecuteCommand(R);
         }
-    }
-
-    void CamState() {
-        //Camera Swapping/VR State Swapping
-        //See: http://docs.unity3d.com/ScriptReference/Camera.html 
     }
 }

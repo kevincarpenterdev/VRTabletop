@@ -13,6 +13,17 @@ namespace VRTabletop.Communications {
         public int HPChange { get; private set; }
         //Other Stats changed
 
+        public Response(float x, float y, float z, int i, int h) {
+            AppliedID = i;
+
+            movX = x;
+            movY = y;
+            movz = z;
+
+            HPChange = h;
+        }
+
+
         public Vector3 getNewPosition() {
             return new Vector3(movX , movY , movz);
         }

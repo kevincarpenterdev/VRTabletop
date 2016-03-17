@@ -22,12 +22,17 @@ namespace VRTabletop.Communications {
             TarX = target.position.x;
             TarY = target.position.y;
             TarZ = target.position.z;
+            HPChange = 0;
         }
 
         //shooting contstructor
-        public Order(int i, int h) {
+        public Order(int i, int h, Vector3 CurrPos) {
             TargetID = i;
             HPChange = h;
+            TarX = CurrPos.x;
+            TarY = CurrPos.y;
+            TarZ = CurrPos.z;
+
         }
     }
 }

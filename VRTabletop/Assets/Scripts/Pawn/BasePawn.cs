@@ -58,9 +58,9 @@ namespace VRTabletop.Pawns {
             if(isValid) {
                 switch (C) {
                     case CommandType.Movement:
-                        return new Order(this.ID , CheckCollider.GrabTransform());
+                        return new Order(ID , CheckCollider.GrabTransform());
                     case CommandType.Shooting:
-                        return new Order(CS.GrabTargetID() , 100);
+                        return new Order(CS.GrabTargetID() , 100 , transform.position);
                     case CommandType.NonTargetAbility:
                         throw new NotImplementedException();
                     default:
