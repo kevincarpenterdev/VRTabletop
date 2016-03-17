@@ -7,9 +7,9 @@ using VRTabletop.Pawns.Validation;
 namespace VRTabletop.Pawns {
     public class BasePawn : MonoBehaviour, ICommandable {
         //Data Stuff
-        [SerializeField] public int ID { get;  private set; }
+        [SerializeField] public int ID; //{ get;  private set; }
         public bool isValid { get; private set; }
-        CommandType C;
+        [SerializeField] CommandType C;
 
         [SerializeField]protected GameObject Head;
         
@@ -80,6 +80,12 @@ namespace VRTabletop.Pawns {
             Head.transform.LookAt(P.transform);
         }
 
+        //and trash this one too!
+        public void StopCCValidation() {
+            CheckCollider.StopValidation();
+            CheckCollider.Cancel();
+        }
+
         //Called once
         public Order SendOrder() {
             if(isValid) {
@@ -90,7 +96,7 @@ namespace VRTabletop.Pawns {
                         CheckCollider.Cancel();
                         return O;
                     case CommandType.Shooting:
-                        return new Order(CS.GrabTargetID() , 100 , transform.position);
+                        return new Order(CS.GrabTargetID() , -100 , CS.GrabTarget().transform.position);
                     case CommandType.NonTargetAbility:
                         throw new NotImplementedException();
                     default:
@@ -111,8 +117,8 @@ namespace VRTabletop.Pawns {
 
         public void ExecuteCommand(Response R) {
             HP += R.HPChange;
-            if (HP<=0) {
-                Destroy(this);
+            if (HP < 0) {
+                Destroy(this.gameObject);
                 return;
             }
             transform.position = R.getNewPosition();

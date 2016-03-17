@@ -64,7 +64,7 @@ namespace VRTabletop.Pawns.Validation {
             }
         }
         public void MoveChecker(float x, float z) {
-            CC.Move(new Vector3(x ,0f, z));
+            CC.Move(new Vector3(x ,0f, z)*Time.deltaTime);
         }
     }
 }

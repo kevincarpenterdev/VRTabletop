@@ -13,6 +13,14 @@ namespace VRTabletop.Pawns.Validation {
             Test = true;
         }
 
+        public BasePawn GrabTarget() {
+            if (Target != null) {
+                return Target;
+            } else {
+                return null;
+            }
+        }
+
         public int GrabTargetID() {
             return Target.ID;
         }
@@ -24,10 +32,10 @@ namespace VRTabletop.Pawns.Validation {
 
             if(Test) TurnOnLaser(ray);
             //Adjust "10" as nessecary
-            if (Physics.Raycast(ray , out h , 10)) {
+            if (Physics.Raycast(ray , out h , 100)) {
                 if (Test) Laser.SetPosition(1 , h.point);
-                BasePawn B = h.collider.gameObject.GetComponent<BasePawn>();
-                if (B != null) {
+                Target = h.collider.gameObject.GetComponentInParent<BasePawn>();
+                if (Target != null) {
                     return h.collider.gameObject;
                 }
             }

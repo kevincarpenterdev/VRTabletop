@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace VRTabletop.Communications {
-    public class Response : MonoBehaviour {
+    public class Response  {
 
         public int AppliedID { get; private set; }
 

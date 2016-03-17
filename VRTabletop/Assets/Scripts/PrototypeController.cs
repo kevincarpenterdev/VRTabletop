@@ -40,7 +40,7 @@ public class PrototypeController : MonoBehaviour {
     void Update() {
         InputCheck();
         ModeCheck();
-        //ExecutionCheck();
+        ExecutionCheck();
     }
     
     void InputCheck() {
@@ -50,6 +50,7 @@ public class PrototypeController : MonoBehaviour {
             OverviewCam.gameObject.SetActive(true);
             //Sight.SetActive(false);
             PawnCam.gameObject.SetActive(false);
+            ControlledPawn.StopCCValidation();
         } else if (Input.GetKeyDown(KeyCode.F2)) {
             m = Mode.ShootMode;
             ControlledPawn.SetCommand(CommandType.Shooting);
@@ -92,16 +93,16 @@ public class PrototypeController : MonoBehaviour {
         } else if (m== Mode.MoveMode) {
             float x = 0f;
             float z = 0f;
-            if(Input.GetKeyDown(KeyCode.W)) {
+            if(Input.GetKey(KeyCode.W)) {
                 x -= speed;
             }
-            if(Input.GetKeyDown(KeyCode.A)) {
+            if(Input.GetKey(KeyCode.A)) {
                 z -= speed;
             }
-            if(Input.GetKeyDown(KeyCode.S)) {
+            if(Input.GetKey(KeyCode.S)) {
                 x += speed;
             }
-            if(Input.GetKeyDown(KeyCode.D)) {
+            if(Input.GetKey(KeyCode.D)) {
                 z += speed;
             }
             ControlledPawn.moveChecker(x , z);
@@ -115,7 +116,7 @@ public class PrototypeController : MonoBehaviour {
                 //Serialize/Deserialize Server simulation
                 /*string OrderString = OrderFormatter.serialize(O);
                 Response R = OrderFormatter.deserialize(OrderString); */
-                Response R = new Response(O.TarX, O.TarY, O.TarZ, O.HPChange, O.TargetID);
+                Response R = new Response(O.TarX, O.TarY, O.TarZ, O.TargetID, O.HPChange);
                 ExecuteOrder(R);
             }
         }

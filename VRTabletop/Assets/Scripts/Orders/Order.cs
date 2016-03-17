@@ -3,7 +3,7 @@ using System.Collections;
 using VRTabletop.Pawns;
 
 namespace VRTabletop.Communications {
-    public class Order : MonoBehaviour {
+    public class Order  {
 
         public int TargetID { get; private set; }
 
