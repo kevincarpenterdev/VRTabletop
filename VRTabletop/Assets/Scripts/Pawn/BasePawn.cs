@@ -48,6 +48,11 @@ namespace VRTabletop.Pawns {
             
         }
 
+        //Trash this method
+        public void moveChecker(float x, float z) {
+            CheckCollider.MoveChecker(x,z);
+        }
+
         //Called once
         public Order SendOrder() {
             if(isValid) {

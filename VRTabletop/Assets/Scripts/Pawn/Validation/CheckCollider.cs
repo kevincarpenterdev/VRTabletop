@@ -6,6 +6,12 @@ namespace VRTabletop.Pawns.Validation {
     public class CheckCollider : MonoBehaviour {
         [SerializeField] Collider coll;
         [SerializeField] Transform PrevTr;
+        [SerializeField] Material Valid;
+        [SerializeField] Material Invalid;
+        [SerializeField] CharacterController CC;
+
+
+
         bool valid = true;
 
         public bool Validate() {
@@ -45,6 +51,9 @@ namespace VRTabletop.Pawns.Validation {
             if (PawnCheck == null && OCheck == null) {
                 valid = true;
             }
+        }
+        public void MoveChecker(float x, float z) {
+            //CC.Move(new Vector3(x ,0f, z));
         }
     }
 }

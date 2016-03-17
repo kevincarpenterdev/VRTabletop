@@ -8,7 +8,11 @@ public class PrototypeController : MonoBehaviour {
 
     public BasePawn ControlledPawn;
     public BasePawn TargetPawn;
-   
+
+    public Camera OverviewCam;
+    public Camera PawnCam;
+
+    [SerializeField] float speed;
 
     enum VRState {
         Disconnected,
@@ -41,9 +45,13 @@ public class PrototypeController : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.F1)) {
             m = Mode.MoveMode;
             ControlledPawn.SetCommand(CommandType.Movement);
+            OverviewCam.gameObject.SetActive(true);
+            PawnCam.gameObject.SetActive(false);
         } else if (Input.GetKeyDown(KeyCode.F2)) {
             m = Mode.ShootMode;
             ControlledPawn.SetCommand(CommandType.Shooting);
+            OverviewCam.gameObject.SetActive(false);
+            PawnCam.gameObject.SetActive(true);
         }
     }
     void ModeCheck() {
@@ -67,20 +75,29 @@ public class PrototypeController : MonoBehaviour {
                 if (Input.GetKeyDown(KeyCode.E)) {
                     //Rotate Right
                 }
+                if(Input.GetKeyDown(KeyCode.R)) {
+                    //Rotate down
+                }
+                if(Input.GetKeyDown(KeyCode.F)) {
+                    //rotateUp
+                }
             }
         } else if (m== Mode.MoveMode) {
+            float x = 0f;
+            float z = 0f;
             if(Input.GetKeyDown(KeyCode.W)) {
-                //Move Collider Up
+                x += speed;
             }
             if(Input.GetKeyDown(KeyCode.A)) {
-                    //Move Collider left
+                z -= speed;
             }
             if(Input.GetKeyDown(KeyCode.S)) {
-                //Move Collider down
+                x -= speed;
             }
             if(Input.GetKeyDown(KeyCode.D)) {
-                //Move collider right
+                z += speed;
             }
+            ControlledPawn.moveChecker(x , z);
         }
     }
 
