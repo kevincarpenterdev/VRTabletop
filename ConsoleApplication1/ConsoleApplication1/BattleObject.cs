@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplication1
 {
-    class BattleObject
+    [Serializable]
+    public class BattleObject
     {
         public int BS { get; set; }
         public int CC { get; set; }
