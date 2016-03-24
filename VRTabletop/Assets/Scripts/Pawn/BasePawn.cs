@@ -83,7 +83,6 @@ namespace VRTabletop.Pawns {
         //and trash this one too!
         public void StopCCValidation() {
             CheckCollider.StopValidation();
-            CheckCollider.Cancel();
         }
 
         //Called once
@@ -93,10 +92,9 @@ namespace VRTabletop.Pawns {
                     case CommandType.Movement:
                         Order O = new Order(ID , CheckCollider.GrabTransform());
                         CheckCollider.StopValidation();
-                        CheckCollider.Cancel();
                         return O;
                     case CommandType.Shooting:
-                        return new Order(CS.GrabTargetID() , -100 , CS.GrabTarget().transform.position);
+                        return new Order(CS.CheckValid().ID , -100 , CS.CheckValid().transform.position);
                     case CommandType.NonTargetAbility:
                         throw new NotImplementedException();
                     default:

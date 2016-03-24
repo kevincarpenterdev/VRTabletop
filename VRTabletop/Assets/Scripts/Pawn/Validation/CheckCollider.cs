@@ -3,7 +3,7 @@ using System.Collections;
 
 
 namespace VRTabletop.Pawns.Validation {
-    public class CheckCollider : MonoBehaviour {
+    public class CheckCollider : MonoBehaviour, IValidator<Transform> {
         [SerializeField] protected Collider coll;
         [SerializeField] protected Transform PrevTr;
         [SerializeField] protected Material ValidMat;
@@ -15,24 +15,21 @@ namespace VRTabletop.Pawns.Validation {
 
         bool valid = true;
 
-        public bool Validate() {
+        public Transform CheckValid() {
             if(valid) {
-                return true;
+                return transform;
             } else {
-                return false;
+                return PrevTr;
             }
         }
 
-        public void Cancel() {
-            transform.position = PrevTr.position;
-        }
-
-        public void startValidation() {
+        public void StartValidation() {
             VisualCheck.SetActive(true);
         }
 
         public void StopValidation() {
             VisualCheck.SetActive(false);
+            transform.position = PrevTr.position;
         }
 
         public Transform GrabTransform() {

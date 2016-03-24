@@ -6,10 +6,10 @@ using VRTabletop.Communications;
 namespace VRTabletop.Pawns.Validation {
     public static class PawnValidator {
 
-        
+        //Replace?
         public static bool ValidatePosition(CheckCollider C) {
-            C.startValidation();
-            return C.Validate();
+            C.StartValidation();
+            return C.CheckValid();
         }
 
         public static bool ValidateShot(CheckShot C) {

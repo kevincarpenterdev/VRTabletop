@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Assets.Scripts.Interfaces {
-    public interface IValidator {
+namespace VRTabletop.Pawns.Validation {
+    public interface IValidator<T> {
         void StartValidation();
+
+        T CheckValid();
 
         void StopValidation();
     }
