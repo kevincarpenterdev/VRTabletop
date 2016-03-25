@@ -447,6 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2298c0f6a101643afc9299e601b8b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: 0
   C: 0
   Head: {fileID: 139442}
   HP: 1
@@ -483,6 +484,7 @@ MonoBehaviour:
   Test: 0
   Laser: {fileID: 12036558}
   Target: {fileID: 0}
+  Validating: 0
 --- !u!120 &12036558
 LineRenderer:
   m_ObjectHideFlags: 1

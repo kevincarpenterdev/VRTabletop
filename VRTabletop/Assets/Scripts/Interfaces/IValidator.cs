@@ -10,5 +10,7 @@ namespace VRTabletop.Pawns.Validation {
         T CheckValid();
 
         void StopValidation();
+
+        IValidator<T> RetrieveValidator();
     }
 }

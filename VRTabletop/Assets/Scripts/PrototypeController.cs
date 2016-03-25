@@ -3,6 +3,7 @@ using System.Collections;
 using VRTabletop.Clients;
 using VRTabletop.Communications;
 using VRTabletop.Pawns;
+using VRTabletop.Pawns.Validation;
 
 public class PrototypeController : MonoBehaviour {
 
@@ -44,19 +45,28 @@ public class PrototypeController : MonoBehaviour {
     }
     
     void InputCheck() {
-        if(Input.GetKeyDown(KeyCode.F1)) {
+
+        if (Input.GetKeyDown(KeyCode.F1) || Input.GetKeyDown(KeyCode.F2)) {
+            ControlledPawn.StopValidation();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F1)) {
             m = Mode.MoveMode;
             ControlledPawn.SetCommand(CommandType.Movement);
             OverviewCam.gameObject.SetActive(true);
             //Sight.SetActive(false);
             PawnCam.gameObject.SetActive(false);
-            ControlledPawn.StopCCValidation();
         } else if (Input.GetKeyDown(KeyCode.F2)) {
             m = Mode.ShootMode;
             ControlledPawn.SetCommand(CommandType.Shooting);
             OverviewCam.gameObject.SetActive(false);
             //Sight.SetActive(true);
             PawnCam.gameObject.SetActive(true);
+        } else if (Input.GetKeyDown(KeyCode.F3)) {
+            m = Mode.None;
+            OverviewCam.gameObject.SetActive(true);
+            //Sight.SetActive(false);
+            PawnCam.gameObject.SetActive(false);
         }
     }
     void ModeCheck() {
@@ -77,18 +87,6 @@ public class PrototypeController : MonoBehaviour {
                 if(Input.GetKey(KeyCode.Q)) {
                     ControlledPawn.LookAtPawn(TargetPawn);
                 }
-                /*if (Input.GetKeyDown(KeyCode.Q)) {
-                    //Rotate Left
-                }
-                if (Input.GetKeyDown(KeyCode.E)) {
-                    //Rotate Right
-                }
-                if(Input.GetKeyDown(KeyCode.R)) {
-                    //Rotate down
-                }
-                if(Input.GetKeyDown(KeyCode.F)) {
-                    //rotateUp
-                }*/
             }
         } else if (m== Mode.MoveMode) {
             float x = 0f;
@@ -105,7 +103,7 @@ public class PrototypeController : MonoBehaviour {
             if(Input.GetKey(KeyCode.D)) {
                 z += speed;
             }
-            ControlledPawn.moveChecker(x , z);
+            ControlledPawn.RunValidation(x , z);
         }
     }
 

@@ -25,38 +25,19 @@ namespace VRTabletop.Pawns {
             isValid = false;
         }
 
-        // Update is called once per frame
-        /*void Update() {
-          
-        }*/
-
-        /*ValidationStartups
-        public void startValidation() {
-            switch (C) {
-                case CommandType.Movement:
-                    isValid = PawnValidator.ValidatePosition(CheckCollider);
-                    break;
-                case CommandType.Shooting:
-                    Debug.Log("No Validation needed!");
-                    break;
-                case CommandType.NonTargetAbility:
-                    throw new NotImplementedException();
-                    break;
-                default:
-                    Debug.Log("Nothin here!");
-                    break;
+        public void RunValidation(float x , float z) {
+            if (C == CommandType.Movement) {
+                PawnValidator.ValidatePosition(CheckCollider);
+                CheckCollider.MoveChecker(x , z);
+            } else {
+                Debug.LogWarning("RunValidation for movement isn't supposed to be called");
             }
-        }*/
-
+        }
 
 
         //Run this in an update loop
         public void RunValidation() {
-
             switch (C) {
-                case CommandType.Movement:
-                    isValid = PawnValidator.ValidatePosition(CheckCollider);
-                    break;
                 case CommandType.Shooting:
                     isValid = PawnValidator.ValidateShot(CS);
                     break;
@@ -67,23 +48,13 @@ namespace VRTabletop.Pawns {
                     Debug.Log("Nothin here!");
                     break;
             }
-            
         }
 
-        //Trash this method
-        public void moveChecker(float x, float z) {
-            CheckCollider.MoveChecker(x,z);
-        }
-
-        //And Trash this method
+        //And Trash this method once we get VR running
         public void LookAtPawn(BasePawn P) {
             Head.transform.LookAt(P.transform);
         }
 
-        //and trash this one too!
-        public void StopCCValidation() {
-            CheckCollider.StopValidation();
-        }
 
         //Called once
         public Order SendOrder() {
@@ -111,8 +82,6 @@ namespace VRTabletop.Pawns {
             C = T;
         }
 
-
-
         public void ExecuteCommand(Response R) {
             HP += R.HPChange;
             if (HP < 0) {
@@ -121,6 +90,11 @@ namespace VRTabletop.Pawns {
             }
             transform.position = R.getNewPosition();
             //And anything else we need to apply
+        }
+
+        public void StopValidation() {
+            CheckCollider.StopValidation();
+            CS.StopValidation();
         }
 
     }

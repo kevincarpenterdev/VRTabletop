@@ -35,6 +35,10 @@ namespace VRTabletop.Pawns.Validation {
             Validating = false;
         }
 
+        public IValidator<BasePawn> RetrieveValidator() {
+            return this;
+        }
+
         public BasePawn CastRay() {
             Ray ray = new Ray(transform.position , transform.forward);
             RaycastHit h;
@@ -50,6 +54,8 @@ namespace VRTabletop.Pawns.Validation {
             }
             return null;
         }
+
+
 
 
         //Testing stuff

@@ -32,6 +32,10 @@ namespace VRTabletop.Pawns.Validation {
             transform.position = PrevTr.position;
         }
 
+        public IValidator<Transform> RetrieveValidator() {
+            return this;
+        }
+
         public Transform GrabTransform() {
             if(valid) {
                 return transform;

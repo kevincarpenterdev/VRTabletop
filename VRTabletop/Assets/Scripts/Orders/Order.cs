@@ -2,6 +2,7 @@
 using System.Collections;
 using VRTabletop.Pawns;
 
+//Abstract thiss
 namespace VRTabletop.Communications {
     public class Order  {
 

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//abstract this
 namespace VRTabletop.Communications {
     public class Response  {
 

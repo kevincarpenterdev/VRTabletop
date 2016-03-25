@@ -12,6 +12,10 @@ namespace VRTabletop.Pawns.Validation {
             return C.CheckValid();
         }
 
+        public static void MoveValidator(CheckCollider C, float x, float y) {
+            C.MoveChecker(x , y);
+        }
+
         public static bool ValidateShot(CheckShot C) {
             if(C.CastRay() != null) {
                 return true;
