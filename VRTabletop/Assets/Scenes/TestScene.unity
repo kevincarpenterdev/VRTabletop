@@ -115,9 +115,10 @@ MonoBehaviour:
   ControlledPawn: {fileID: 2103571839}
   TargetPawn: {fileID: 1249523720}
   OverviewCam: {fileID: 732502772}
-  PawnCam: {fileID: 1555391745}
   Sight: {fileID: 803759628}
-  speed: 1.5
+  PV: {fileID: 1450265821}
+  Curr: 0
+  speed: 5
   VR: 0
   m: 0
 --- !u!4 &369830210
@@ -706,11 +707,47 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
---- !u!20 &1555391745 stripped
-Camera:
-  m_PrefabParentObject: {fileID: 2015900, guid: 9c8c7638e4bb52143b7f82b15764c6a2,
-    type: 2}
-  m_PrefabInternal: {fileID: 1729301476}
+--- !u!1 &1450265819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1450265820}
+  - 114: {fileID: 1450265821}
+  m_Layer: 0
+  m_Name: Validator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1450265820
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1450265819}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+--- !u!114 &1450265821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1450265819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1b9448fa7534ca4c9e8c03eb072a276, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CC: {fileID: 0}
+  CS: {fileID: 0}
 --- !u!1001 &1729301476
 Prefab:
   m_ObjectHideFlags: 0

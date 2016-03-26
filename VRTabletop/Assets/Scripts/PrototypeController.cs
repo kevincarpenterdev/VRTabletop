@@ -11,8 +11,11 @@ public class PrototypeController : MonoBehaviour {
     public BasePawn TargetPawn;
 
     public Camera OverviewCam;
-    public Camera PawnCam;
     public GameObject Sight;
+
+    public BasePawnValidator PV;
+
+    public CommandType Curr;
 
     [SerializeField] float speed;
 
@@ -35,6 +38,7 @@ public class PrototypeController : MonoBehaviour {
 	void Start () {
         m = Mode.None;
         Sight.SetActive(false);
+        PV.BPValidatorSetup(ControlledPawn);
 	}
 
     // Update is called once per frame
@@ -47,31 +51,31 @@ public class PrototypeController : MonoBehaviour {
     void InputCheck() {
 
         if (Input.GetKeyDown(KeyCode.F1) || Input.GetKeyDown(KeyCode.F2)) {
-            ControlledPawn.StopValidation();
+            PV.StopValidation();
         }
 
         if (Input.GetKeyDown(KeyCode.F1)) {
             m = Mode.MoveMode;
-            ControlledPawn.SetCommand(CommandType.Movement);
+            SetCommand(CommandType.Movement);
             OverviewCam.gameObject.SetActive(true);
             //Sight.SetActive(false);
-            PawnCam.gameObject.SetActive(false);
+            ControlledPawn.PawnCam.gameObject.SetActive(false);
         } else if (Input.GetKeyDown(KeyCode.F2)) {
             m = Mode.ShootMode;
-            ControlledPawn.SetCommand(CommandType.Shooting);
+            SetCommand(CommandType.Shooting);
             OverviewCam.gameObject.SetActive(false);
             //Sight.SetActive(true);
-            PawnCam.gameObject.SetActive(true);
+            ControlledPawn.PawnCam.gameObject.SetActive(true);
         } else if (Input.GetKeyDown(KeyCode.F3)) {
             m = Mode.None;
             OverviewCam.gameObject.SetActive(true);
             //Sight.SetActive(false);
-            PawnCam.gameObject.SetActive(false);
+            ControlledPawn.PawnCam.gameObject.SetActive(false);
         }
     }
     void ModeCheck() {
         if (m != Mode.None) {
-            ControlledPawn.RunValidation();
+            PV.RunValidation(Curr);
             if (!Input.GetKeyDown(KeyCode.Space) || !Input.GetKeyDown(KeyCode.F1) || !Input.GetKeyDown(KeyCode.F2)) {
                 ControlPawn();
             }
@@ -103,13 +107,13 @@ public class PrototypeController : MonoBehaviour {
             if(Input.GetKey(KeyCode.D)) {
                 z += speed;
             }
-            ControlledPawn.RunValidation(x , z);
+            PV.RunValidation(x , z, Curr);
         }
     }
 
     void ExecutionCheck() {
         if(m != Mode.None && Input.GetKeyDown(KeyCode.Space)) {
-            Order O = ControlledPawn.SendOrder();
+            Order O = PV.SendOrder(Curr);
             if(O != null) {
                 //Serialize/Deserialize Server simulation
                 /*string OrderString = OrderFormatter.serialize(O);
@@ -125,5 +129,8 @@ public class PrototypeController : MonoBehaviour {
         } else if (R.AppliedID == 1) {
             TargetPawn.ExecuteCommand(R);
         }
+    }
+    void SetCommand(CommandType C) {
+        Curr = C;
     }
 }

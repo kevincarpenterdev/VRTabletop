@@ -448,11 +448,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 0
-  C: 0
-  Head: {fileID: 139442}
-  HP: 1
-  CheckCollider: {fileID: 11456964}
+  PawnCam: {fileID: 2015900}
   CS: {fileID: 11482030}
+  HP: 1
+  Head: {fileID: 139442}
 --- !u!114 &11456964
 MonoBehaviour:
   m_ObjectHideFlags: 1
