@@ -72,7 +72,7 @@ namespace VRTabletop.Pawns.Validation {
                 case CommandType.TargetAbility:
                     BasePawn V = CS.CheckValid();
                     if(V != null) {
-                        Order SO = OF.createOrder(C , V, 10);
+                        Order SO = OF.createOrder(C , V, -10);
                         StopValidation();
                         return SO;
                     } else {
