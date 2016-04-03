@@ -28,18 +28,24 @@ namespace VRTabletop.Pawns {
             Head.transform.LookAt(P.transform);
         }
 
-        public void ExecuteCommand(Response R) {
-            HP += R.HPChange;
-            if (HP < 0) {
-                Destroy(this.gameObject);
-                return;
+        public void ExecuteCommand(Response R, CommandType T) {
+            switch(T) {
+                case CommandType.Movement:
+                    MoveResponse MovRes = (MoveResponse)R;
+                    transform.position = MovRes.getNewPosition();
+                    break;
+                case CommandType.TargetAbility:
+                    DamageResponse DamRes = (DamageResponse)R;
+                    HP += DamRes.HPChange;
+                    if (HP < 0) {
+                        Destroy(this.gameObject);
+                        return;
+                    }
+                    break;
             }
-            transform.position = R.getNewPosition();
+
             //And anything else we need to apply
         }
-
-
-
     }
 }
 

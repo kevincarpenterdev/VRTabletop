@@ -4,6 +4,7 @@ using VRTabletop.Clients;
 using VRTabletop.Communications;
 using VRTabletop.Pawns;
 using VRTabletop.Pawns.Validation;
+using VRTabletop.Utils;
 
 public class PrototypeController : MonoBehaviour {
 
@@ -18,6 +19,8 @@ public class PrototypeController : MonoBehaviour {
     public CommandType Curr;
 
     [SerializeField] float speed;
+
+    ResponseFactory RF;
 
     enum VRState {
         Disconnected,
@@ -39,6 +42,7 @@ public class PrototypeController : MonoBehaviour {
         m = Mode.None;
         Sight.SetActive(false);
         PV.BPValidatorSetup(ControlledPawn);
+        RF = new ResponseFactory();
 	}
 
     // Update is called once per frame
@@ -62,7 +66,7 @@ public class PrototypeController : MonoBehaviour {
             ControlledPawn.PawnCam.gameObject.SetActive(false);
         } else if (Input.GetKeyDown(KeyCode.F2)) {
             m = Mode.ShootMode;
-            SetCommand(CommandType.Shooting);
+            SetCommand(CommandType.TargetAbility);
             OverviewCam.gameObject.SetActive(false);
             //Sight.SetActive(true);
             ControlledPawn.PawnCam.gameObject.SetActive(true);
@@ -118,16 +122,16 @@ public class PrototypeController : MonoBehaviour {
                 //Serialize/Deserialize Server simulation
                 /*string OrderString = OrderFormatter.serialize(O);
                 Response R = OrderFormatter.deserialize(OrderString); */
-                Response R = new Response(O.TarX, O.TarY, O.TarZ, O.TargetID, O.HPChange);
+                Response R = RF.GenerateResponse(O , Curr);
                 ExecuteOrder(R);
             }
         }
     }
     void ExecuteOrder(Response R) {
         if(R.AppliedID == 0) {
-            ControlledPawn.ExecuteCommand(R);
+            ControlledPawn.ExecuteCommand(R, Curr);
         } else if (R.AppliedID == 1) {
-            TargetPawn.ExecuteCommand(R);
+            TargetPawn.ExecuteCommand(R, Curr);
         }
     }
     void SetCommand(CommandType C) {

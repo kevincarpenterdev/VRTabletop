@@ -4,6 +4,6 @@ using System.Collections;
 
     public enum CommandType {
         Movement,
-        Shooting,
+        TargetAbility,
         NonTargetAbility
     }

@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using VRTabletop.Communications;
+using VRTabletop.Utils;
 
 namespace VRTabletop.Pawns.Validation {
     public class BasePawnValidator : MonoBehaviour {
@@ -13,11 +14,14 @@ namespace VRTabletop.Pawns.Validation {
         protected CheckShot CS;
 
         protected BasePawn Checked;
+    
+        protected OrderFactory OF;
 
         public bool isValid { get; private set; }
 
         void Start() {
             isValid = false;
+            OF = new OrderFactory();
         }
 
         public void BPValidatorSetup(BasePawn P) {
@@ -48,7 +52,7 @@ namespace VRTabletop.Pawns.Validation {
         //Run this in an update loop
         public void RunValidation(CommandType C) {
             switch (C) {
-                case CommandType.Shooting:
+                case CommandType.TargetAbility:
                     isValid = ValidateShot(CS);
                     break;
                 default:
@@ -62,13 +66,18 @@ namespace VRTabletop.Pawns.Validation {
         public Order SendOrder(CommandType C) {
             switch (C) {
                 case CommandType.Movement:
-                    Order MO = new Order(Checked.ID , CC.GrabTransform());
+                    Order MO = OF.createOrder(Checked , CC.GrabTransform());
                     StopValidation();
                     return MO;
-                case CommandType.Shooting:
-                    Order SO = new Order(CS.CheckValid().ID , -100 , CS.CheckValid().transform.position);
-                    StopValidation();
-                    return SO;
+                case CommandType.TargetAbility:
+                    BasePawn V = CS.CheckValid();
+                    if(V != null) {
+                        Order SO = OF.createOrder(C , V, 10);
+                        StopValidation();
+                        return SO;
+                    } else {
+                        return null;
+                    }
                 case CommandType.NonTargetAbility:
                     throw new NotImplementedException();
                 default:
