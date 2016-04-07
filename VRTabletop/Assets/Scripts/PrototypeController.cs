@@ -22,25 +22,13 @@ public class PrototypeController : MonoBehaviour {
 
     ResponseFactory RF;
 
-    enum VRState {
-        Disconnected,
-        Overview,
-        InPawn
-    }
-
-    enum Mode {
-        None,
-        MoveMode,
-        ShootMode
-    }
-
     [SerializeField] VRState VR;
     [SerializeField] Mode m;
 
 	// Use this for initialization
 	void Start () {
         m = Mode.None;
-        Sight.SetActive(false);
+        //Sight.SetActive(false);
         PV.BPValidatorSetup(ControlledPawn);
         RF = new ResponseFactory();
 	}
@@ -111,7 +99,7 @@ public class PrototypeController : MonoBehaviour {
             if(Input.GetKey(KeyCode.D)) {
                 z += speed;
             }
-            PV.RunValidation(x , z, Curr);
+            PV.RunValidation(x , z);
         }
     }
 

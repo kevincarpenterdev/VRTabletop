@@ -7,3 +7,14 @@ using System.Collections;
         TargetAbility,
         NonTargetAbility
     }
+    public enum VRState {
+         Disconnected,
+         Overview,
+         InPawn
+    }
+
+    public enum Mode {
+        None,
+        MoveMode,
+        ShootMode
+    }

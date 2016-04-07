@@ -13,8 +13,11 @@ namespace VRTabletop.Pawns.Validation {
         [SerializeField]
         protected CheckShot CS;
 
-        protected BasePawn Checked;
-    
+        [SerializeField] public float pawnValidatorSpeed { get; private set; }
+
+        [SerializeField]
+        public BasePawn Checked { get; private set; }
+        public Camera PawnHeadCam { get; private set; }
         protected OrderFactory OF;
 
         public bool isValid { get; private set; }
@@ -22,6 +25,14 @@ namespace VRTabletop.Pawns.Validation {
         void Start() {
             isValid = false;
             OF = new OrderFactory();
+        }
+
+        public bool hasPawn() {
+            if(Checked != null) {
+                return true;
+            } else {
+                return false;
+            }
         }
 
         public void BPValidatorSetup(BasePawn P) {
@@ -34,18 +45,9 @@ namespace VRTabletop.Pawns.Validation {
             }
         }
 
-        public void RunValidation(float x , float z , CommandType C) {
-            switch (C) {
-                case CommandType.Movement:
+        public void RunValidation(float x , float z) {
                     CC.StartValidation();
                     CC.MoveChecker(x , z);
-                    break;
-                case CommandType.NonTargetAbility:
-                    throw new NotImplementedException();
-                default:
-                    RunValidation(C);
-                    break;
-            }
         }
 
 

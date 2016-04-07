@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using VRTabletop.Pawns;
+using VRTabletop.Utils;
 
 namespace VRTabletop.Pawns.Validation {
     public class CheckShot : MonoBehaviour, IValidator<BasePawn> {
@@ -8,11 +9,14 @@ namespace VRTabletop.Pawns.Validation {
         [SerializeField] protected LineRenderer Laser;
         [SerializeField] BasePawn Target;
         [SerializeField] protected bool Validating;
+        [SerializeField] protected PointerController PC;
+
 
         // Use this for initialization
         void Start() {
             Test = true;
             Validating = false;
+            PC.setDebugLine(Laser);
         }
 
         void Update() {
@@ -40,32 +44,18 @@ namespace VRTabletop.Pawns.Validation {
         }
 
         public BasePawn CastRay() {
-            Ray ray = new Ray(transform.position , transform.forward);
-            RaycastHit h;
-
-            if(Test) TurnOnLaser(ray);
-            //Adjust  as nessecary
-            if (Physics.Raycast(ray , out h , 100)) {
-                if (Test) Laser.SetPosition(1 , h.point);
-                Target = h.collider.gameObject.GetComponentInParent<BasePawn>();
-                if (Target != null) {
-                    return Target;
+            GameObject GO = PC.PointAtObject(100 , transform , Test);
+            if (GO != null) {
+                BasePawn P = GO.GetComponent<BasePawn>();
+                if(P != null) {
+                    return P;
+                } else {
+                    return null;
                 }
+            } else {
+                return null;
             }
-            return null;
-        }
-
-
-
-
-        //Testing stuff
-        protected void TurnOnLaser(Ray r) {
-            Laser.enabled = true;
-            Laser.SetPosition(0 , r.origin);
-        }
-
-        protected void TurnOffLaser() {
-            Laser.enabled = false;
+                 
         }
     }
 }
