@@ -4,12 +4,14 @@ using System.Collections.Generic;
 
 using VRTabletop.Pawns;
 using VRTabletop.Pawns.Validation;
+using VRTabletop.Communications;
 
 namespace VRTabletop.Clients {
-    public class Player : Human {
+    public class Player : MonoBehaviour {
         //Organize this better
         public static GM GameMaster; //Global GM
         protected List<BasePawn> ThisPlayersPawns;
+        protected BasePawn SelectedPawn;
         protected bool isTurn;
         public BasePawnValidator PV;
         [SerializeField] protected Mode m;
@@ -19,15 +21,13 @@ namespace VRTabletop.Clients {
         }
 
 
-        public void Control() {
-            //Select pawn validation, see ChronoCommand
-            if(PV.hasPawn()) {
-
-            }
-        }
-
         public void InputCheck() {
-
+            if (Input.GetMouseButtonDown(0)) {
+                Debug.Log("Click!");
+            }
+            if (PV.hasPawn()) {
+                ControlPawn();
+            }
         }
 
         void ControlPawn() {
@@ -38,9 +38,9 @@ namespace VRTabletop.Clients {
                              //Set Player Cam inactive
                              GameMaster.setVRState(VRState.InPawn);
                          } else {
-                             if (Input.GetKey(KeyCode.Q)) {
+                             /*if (Input.GetKey(KeyCode.Q)) {
                                  //ControlledPawn.LookAtPawn(TargetPawn);
-                             }
+                             } */
                          }
                      } else 
                 if (m == Mode.MoveMode) {
@@ -74,29 +74,19 @@ namespace VRTabletop.Clients {
         }
 
         void SendOrder() {
-            
+            //Order O = PV.SendOrder();
             bool valid = true;
             //Bool Valid = ICommandable.ValidateCommand(order);
             if (valid) {
-                if(GameMaster.localGame) {
-                    SendOrderLocal();
-                } else {
-                    SendOrderServer();
-                }
+
             }
         }
 
-        void SendOrderLocal() {
-            //Prototype Controller
+        void SendOrderLocal(Order O) {
+            
+            //Prototype Controller, more or less
 
         }
-
-        void SendOrderServer() {
-            //Server Send ze command to ze Server!!
-            //Serialize the order
-            //Send the Command
-        }
-
     }
 
 }

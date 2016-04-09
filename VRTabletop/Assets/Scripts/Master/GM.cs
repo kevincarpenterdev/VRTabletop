@@ -14,13 +14,9 @@ namespace VRTabletop {
     //Due for a refactor?
     public class GM : MonoBehaviour {
 
-        [SerializeField] public bool localGame { get; private set; }
-
         //"Global" Variables
         Dictionary<int , BasePawn> Pawns_In_Play;
         Dictionary<int , Player> Players;
-        Dictionary<int , Human> Humans; //insert in a seperate controller that controls server?
-
         //Game Vars
         [SerializeField] public VRState VR { get; private set; }
 
@@ -33,18 +29,14 @@ namespace VRTabletop {
 
         }
 
+
         // Update is called once per frame
         void Update() {
-            if (localGame) {
-                //Wait for player
-            } else {
-                //listen for server
-                //If got broadcast, move pawns/update states
-            }
+
         }
 
         public void passTurn() {
-            
+
         }
 
         //Grab the response from the server and apply it, though for now we are short cutting it....
@@ -53,7 +45,7 @@ namespace VRTabletop {
             if (TargetPawn != null) {
                 TargetPawn.ExecuteCommand(R , R.CMD);
                 if(TargetPawn == null) {
-                    //Remove it
+                    //Remove it from the list
                 }
             } else {
                 throw new ArgumentNullException();

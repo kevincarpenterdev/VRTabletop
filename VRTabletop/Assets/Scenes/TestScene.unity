@@ -115,10 +115,10 @@ MonoBehaviour:
   ControlledPawn: {fileID: 2103571839}
   TargetPawn: {fileID: 1249523720}
   OverviewCam: {fileID: 732502772}
-  Sight: {fileID: 803759628}
+  Sight: {fileID: 0}
   PV: {fileID: 1450265821}
   Curr: 0
-  speed: 5
+  speed: 6
   VR: 0
   m: 0
 --- !u!4 &369830210
@@ -203,6 +203,7 @@ Canvas:
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -455,6 +456,12 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!114 &813971698 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11482030, guid: 9c8c7638e4bb52143b7f82b15764c6a2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1729301476}
+  m_Script: {fileID: 11500000, guid: c8e5815b2345d0c458c2e7e3edd45b45, type: 3}
 --- !u!1 &816629919
 GameObject:
   m_ObjectHideFlags: 0
@@ -525,6 +532,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!1 &1061763867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1061763869}
+  - 114: {fileID: 1061763868}
+  m_Layer: 0
+  m_Name: DummyPC
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1061763868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1061763867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f841eac63350d66498a8030330517804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugLine: {fileID: 0}
+--- !u!4 &1061763869
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1061763867}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.207512, y: -0.115511894, z: -2.0649676}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
 --- !u!1 &1126648001
 GameObject:
   m_ObjectHideFlags: 0
@@ -746,8 +793,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1b9448fa7534ca4c9e8c03eb072a276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CC: {fileID: 0}
-  CS: {fileID: 0}
+  CC: {fileID: 1548876967}
+  CS: {fileID: 813971698}
+--- !u!114 &1548876967 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11456964, guid: 9c8c7638e4bb52143b7f82b15764c6a2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1729301476}
+  m_Script: {fileID: 11500000, guid: 5cca1d353a8000f47ab5d62c11ab3ee9, type: 3}
 --- !u!1001 &1729301476
 Prefab:
   m_ObjectHideFlags: 0
@@ -787,6 +840,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 11482030, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
+      propertyPath: PC
+      value: 
+      objectReference: {fileID: 1061763868}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
   m_IsPrefabParent: 0
