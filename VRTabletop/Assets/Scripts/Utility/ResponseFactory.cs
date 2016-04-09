@@ -7,10 +7,6 @@ using VRTabletop.Communications;
 
 namespace VRTabletop.Utils {
     public class ResponseFactory {
-        //Server Version
-        /*public Response GenerateResponse(string s) {
-            throw new NotImplementedException();
-        }*/
 
         //Client-only version
         public Response GenerateResponse(Order O, CommandType T) {

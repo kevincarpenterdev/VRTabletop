@@ -107,7 +107,7 @@ public class PrototypeController : MonoBehaviour {
         if(m != Mode.None && Input.GetKeyDown(KeyCode.Space)) {
             Order O = PV.SendOrder(Curr);
             if(O != null) {
-                //Serialize/Deserialize Server simulation
+                //Order Application Simulation
                 /*string OrderString = OrderFormatter.serialize(O);
                 Response R = OrderFormatter.deserialize(OrderString); */
                 Response R = RF.GenerateResponse(O , Curr);

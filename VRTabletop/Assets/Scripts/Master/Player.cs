@@ -75,17 +75,7 @@ namespace VRTabletop.Clients {
 
         void SendOrder() {
             //Order O = PV.SendOrder();
-            bool valid = true;
-            //Bool Valid = ICommandable.ValidateCommand(order);
-            if (valid) {
-
-            }
-        }
-
-        void SendOrderLocal(Order O) {
-            
-            //Prototype Controller, more or less
-
+            //See Prototype Controller
         }
     }
 

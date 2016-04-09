@@ -39,7 +39,7 @@ namespace VRTabletop {
 
         }
 
-        //Grab the response from the server and apply it, though for now we are short cutting it....
+        //Grab the response from the Rulebook and apply it, though for now we are short cutting it....
         public void ApplyResponse(Response R) {
             BasePawn TargetPawn = Pawns_In_Play[R.AppliedID];
             if (TargetPawn != null) {
