@@ -12,12 +12,13 @@ namespace VRTabletop.Utils {
         }
 
         public GameObject PointAtObject(float range, Transform location, bool LasTest) {
-            Ray ray = new Ray(location.position , transform.forward);
+            Ray ray = new Ray(location.position , location.transform.forward);
             RaycastHit H;
 
             if (LasTest) TurnDebugOn(ray);
 
             if(Physics.Raycast(ray,out H, range)) {
+                if (LasTest) DebugLine.SetPosition(1 , H.point);
                 return H.collider.gameObject;
             }
             return null;
