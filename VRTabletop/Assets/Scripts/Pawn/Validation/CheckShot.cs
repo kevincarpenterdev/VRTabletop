@@ -46,7 +46,7 @@ namespace VRTabletop.Pawns.Validation {
         public BasePawn CastRay() {
             GameObject GO = PC.PointAtObject(100 , transform , Test);
             if (GO != null) {
-                BasePawn P = GO.GetComponent<BasePawn>();
+                BasePawn P = GO.GetComponentInParent<BasePawn>();
                 if(P != null) {
                     return P;
                 } else {

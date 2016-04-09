@@ -55,7 +55,8 @@ namespace VRTabletop.Pawns.Validation {
         public void RunValidation(CommandType C) {
             switch (C) {
                 case CommandType.TargetAbility:
-                    isValid = ValidateShot(CS);
+                    CS.StartValidation();
+                    isValid = ValidateShot();
                     break;
                 default:
                     Debug.Log("Nothin here!");
@@ -88,8 +89,8 @@ namespace VRTabletop.Pawns.Validation {
             }
         }
 
-        public bool ValidateShot(CheckShot C) {
-            if (C.CastRay() != null) {
+        public bool ValidateShot() {
+            if(CS.CheckValid() != null) {
                 return true;
             } else {
                 return false;
