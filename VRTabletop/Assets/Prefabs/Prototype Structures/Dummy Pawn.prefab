@@ -34,6 +34,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &116136
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 448320}
+  - 114: {fileID: 11474492}
+  m_Layer: 0
+  m_Name: PointerController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &136212
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,6 +233,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 449744}
   m_RootOrder: 1
+--- !u!4 &448320
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116136}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 491020}
+  m_RootOrder: 1
 --- !u!4 &449744
 Transform:
   m_ObjectHideFlags: 1
@@ -282,6 +310,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 498908}
+  - {fileID: 448320}
   m_Father: {fileID: 476026}
   m_RootOrder: 0
 --- !u!4 &498908
@@ -469,6 +498,18 @@ MonoBehaviour:
   InvalidMat: {fileID: 2100000, guid: 5abdf4349fc6ba347bec9246351b30e9, type: 2}
   CC: {fileID: 14328132}
   VisualCheck: {fileID: 151626}
+--- !u!114 &11474492
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f841eac63350d66498a8030330517804, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugLine: {fileID: 0}
 --- !u!114 &11482030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -484,6 +525,7 @@ MonoBehaviour:
   Laser: {fileID: 12036558}
   Target: {fileID: 0}
   Validating: 0
+  PC: {fileID: 11474492}
 --- !u!120 &12036558
 LineRenderer:
   m_ObjectHideFlags: 1

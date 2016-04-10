@@ -15,10 +15,12 @@ namespace VRTabletop {
     public class GM : MonoBehaviour {
 
         //"Global" Variables
-        Dictionary<int , BasePawn> Pawns_In_Play;
-        Dictionary<int , Player> Players;
+        [SerializeField] protected List<BasePawn> Pawns_In_Play;
+        [SerializeField] protected List<Player> Players;
+        protected int PlayerTurn;
+
         //Game Vars
-        [SerializeField] public VRState VR { get; private set; }
+        [SerializeField] public VRState VR { get; protected set; }
 
         public void setVRState(VRState V) {
             VR = V;
@@ -26,17 +28,23 @@ namespace VRTabletop {
 
         // Use this for initialization
         void Start() {
-
+            //Temp
+            setVRState(VRState.Disconnected);
+            PlayerTurn = 0;
         }
 
 
         // Update is called once per frame
         void Update() {
-
+            Players[PlayerTurn].InputCheck();
         }
 
         public void passTurn() {
 
+        }
+
+        public void AcquireOrder(Order O) {
+            //Grab the order Send it to the Rulebook and let 'er rip!
         }
 
         //Grab the response from the Rulebook and apply it, though for now we are short cutting it....
