@@ -6,7 +6,7 @@ using VRTabletop.Pawns.Validation;
 namespace VRTabletop {
     public interface ICommandable {
 
-        void ExecuteCommand(Response R, CommandType T); //Updates the state of the commanded thing
+        void ExecuteCommand(Response R); //Updates the state of the commanded thing
 
         }
  }

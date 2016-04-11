@@ -9,21 +9,16 @@ namespace VRTabletop.Utils {
     public class ResponseFactory {
 
         //Client-only version
-        public Response GenerateResponse(Order O, CommandType T) {
-
-            switch(T) {
-                case CommandType.Movement:
-                    MoveOrder MO = (MoveOrder)O;
-                    return new MoveResponse(MO.TargetID , new Vector3(MO.TarX , MO.TarY , MO.TarZ),T);
-                case CommandType.TargetAbility:
-                    AttackOrder AO = (AttackOrder)O;
-                    return new DamageResponse(AO.TargetID , AO.HPChange , T);
-                case CommandType.NonTargetAbility:
-                    throw new NotImplementedException();
-//                    break;
-                default:
-                    throw new InvalidOperationException();
+        public Response GenerateNonValidResponse(Order O) {
+            //Temp
+            if(O is MoveOrder) {
+                MoveOrder MO = (MoveOrder)O;
+                return new MoveResponse(O.TargetID , new Vector3(MO.TarX,MO.TarY,MO.TarZ), CommandType.Movement);
+            } else if(O is AttackOrder) {
+                AttackOrder AO = (AttackOrder)O;
+                return new DamageResponse(O.TargetID , AO.HPChange , CommandType.TargetAbility);
             }
+            throw new InvalidOperationException();
         }
     }
 }

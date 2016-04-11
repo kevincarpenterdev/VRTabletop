@@ -9,6 +9,7 @@ using VRTabletop.Communications;
 using VRTabletop.Clients;
 
 using VRTabletop.Pawns.Validation;
+using VRTabletop.Utils;
 
 namespace VRTabletop {
     //Due for a refactor?
@@ -18,6 +19,7 @@ namespace VRTabletop {
         [SerializeField] protected List<BasePawn> Pawns_In_Play;
         [SerializeField] protected List<Player> Players;
         protected int PlayerTurn;
+        protected ResponseFactory RF;
 
         //Game Vars
         [SerializeField] public VRState VR { get; protected set; }
@@ -31,6 +33,7 @@ namespace VRTabletop {
             //Temp
             setVRState(VRState.Disconnected);
             PlayerTurn = 0;
+            RF = new ResponseFactory();
         }
 
 
@@ -45,13 +48,15 @@ namespace VRTabletop {
 
         public void AcquireOrder(Order O) {
             //Grab the order Send it to the Rulebook and let 'er rip!
+            //Here is our very temporary version
+            ApplyResponse(RF.GenerateNonValidResponse(O));
         }
 
         //Grab the response from the Rulebook and apply it, though for now we are short cutting it....
         public void ApplyResponse(Response R) {
             BasePawn TargetPawn = Pawns_In_Play[R.AppliedID];
             if (TargetPawn != null) {
-                TargetPawn.ExecuteCommand(R , R.CMD);
+                TargetPawn.ExecuteCommand(R);
                 if(TargetPawn == null) {
                     //Remove it from the list
                 }

@@ -110,16 +110,16 @@ public class PrototypeController : MonoBehaviour {
                 //Order Application Simulation
                 /*string OrderString = OrderFormatter.serialize(O);
                 Response R = OrderFormatter.deserialize(OrderString); */
-                Response R = RF.GenerateResponse(O , Curr);
+                Response R = RF.GenerateNonValidResponse(O);
                 ExecuteOrder(R);
             }
         }
     }
     void ExecuteOrder(Response R) {
         if(R.AppliedID == 0) {
-            ControlledPawn.ExecuteCommand(R, Curr);
+            ControlledPawn.ExecuteCommand(R);
         } else if (R.AppliedID == 1) {
-            TargetPawn.ExecuteCommand(R, Curr);
+            TargetPawn.ExecuteCommand(R);
         }
     }
     void SetCommand(CommandType C) {

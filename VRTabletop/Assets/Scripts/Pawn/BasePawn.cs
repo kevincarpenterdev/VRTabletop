@@ -28,8 +28,8 @@ namespace VRTabletop.Pawns {
             Head.transform.LookAt(P.transform);
         }
 
-        public void ExecuteCommand(Response R, CommandType T) {
-            switch(T) {
+        public void ExecuteCommand(Response R) {
+            switch(R.CMD) {
                 case CommandType.Movement:
                     MoveResponse MovRes = (MoveResponse)R;
                     transform.position = MovRes.getNewPosition();
