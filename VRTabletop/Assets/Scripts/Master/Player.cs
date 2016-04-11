@@ -10,8 +10,8 @@ using VRTabletop.Utils;
 namespace VRTabletop.Clients {
     public class Player : MonoBehaviour {
         //Organize this better
-        public static GM GameMaster; //Global GM
-        protected List<BasePawn> ThisPlayersPawns;
+        protected GM GameMaster; //Global GM
+        [SerializeField] protected List<BasePawn> ThisPlayersPawns;
         [SerializeField] protected BasePawn SelectedPawn;
         protected bool isTurn;
         [SerializeField] protected BasePawnValidator PV;
@@ -22,10 +22,13 @@ namespace VRTabletop.Clients {
             m = Mode.None;
         }
 
+        public void setGM(GM G) {
+            GameMaster = G;
+        }
 
         public void InputCheck() {
             if (Input.GetMouseButtonDown(0)) {
-                Debug.Log("Click!");
+                SelectPawn(PC.ClickOnGameObject(Input.mousePosition));                
             }
             if (PV.hasPawn()) {
                 ControlPawn();
@@ -64,10 +67,17 @@ namespace VRTabletop.Clients {
             }
         }
 
-        void SelectPawn(BasePawn P) {
-            if(ValidateSelectedPawn(P)) {
-                PV.BPValidatorSetup(P);
-                //Graphicy stuff!
+        void SelectPawn(GameObject Obj) {
+            Debug.Log("Hit SelectPawn!");
+            BasePawn P = Obj.GetComponentInParent<BasePawn>();
+            if(P != null) {
+                Debug.Log("Pawn exists");
+                if (ValidateSelectedPawn(P)) {
+                    Debug.Log("Pawn is Valid");
+                    SelectedPawn = P;
+                    PV.BPValidatorSetup(P);
+                    //Graphicy stuff!
+                }
             }
         }
 

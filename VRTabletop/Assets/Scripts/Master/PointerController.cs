@@ -11,6 +11,16 @@ namespace VRTabletop.Utils {
             DebugLine = R;
         }
 
+        //ONLY USE THIS WITH THE "OVERVIEW" CAM! NOT THE FPS CAM!
+        public GameObject ClickOnGameObject(Vector3 MousePos) {
+            Ray r = Camera.main.ScreenPointToRay(MousePos);
+            RaycastHit RH = new RaycastHit();
+            if(Physics.Raycast(r, out RH, 1000f)) {
+                return RH.transform.gameObject;
+            }
+            return null;
+        }
+
         public GameObject PointAtObject(float range, Transform location, bool LasTest) {
             Ray ray = new Ray(location.position , location.transform.forward);
             RaycastHit H;
