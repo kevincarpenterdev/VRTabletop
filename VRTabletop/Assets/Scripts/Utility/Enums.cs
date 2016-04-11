@@ -14,7 +14,7 @@ using System.Collections;
     }
 
     public enum Mode {
-        None,
+        Select,
         MoveMode,
         ShootMode
     }

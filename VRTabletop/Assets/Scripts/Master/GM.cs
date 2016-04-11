@@ -21,8 +21,25 @@ namespace VRTabletop {
         protected int PlayerTurn;
         protected ResponseFactory RF;
 
+        [SerializeField] protected Camera MainCam;
+        [SerializeField] protected Camera FPSCam;
+
         //Game Vars
         [SerializeField] public VRState VR { get; protected set; }
+
+        public void SetCamMode(bool FPSMode) {
+            if(FPSMode == true ) {
+                MainCam.gameObject.SetActive(false);
+                FPSCam.gameObject.SetActive(true);
+            } else {
+                MainCam.gameObject.SetActive(true);
+                FPSCam.gameObject.SetActive(false);
+            }
+        }
+
+        public void SetFPSCam(Camera C) {
+            FPSCam = C;
+        }
 
         public void setVRState(VRState V) {
             VR = V;
@@ -46,7 +63,7 @@ namespace VRTabletop {
         }
 
         public void passTurn() {
-
+            throw new NotImplementedException();
         }
 
         public void AcquireOrder(Order O) {

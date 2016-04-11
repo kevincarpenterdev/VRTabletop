@@ -19,7 +19,7 @@ namespace VRTabletop.Clients {
         [SerializeField] PointerController PC;
 
         void Start() {
-            m = Mode.None;
+            m = Mode.Select;
         }
 
         public void setGM(GM G) {
@@ -27,7 +27,8 @@ namespace VRTabletop.Clients {
         }
 
         public void InputCheck() {
-            if (Input.GetMouseButtonDown(0)) {
+            ChangeMode();
+            if (Input.GetMouseButtonDown(0) && m == Mode.Select) {
                 SelectPawn(PC.ClickOnGameObject(Input.mousePosition));                
             }
             if (PV.hasPawn()) {
@@ -35,6 +36,23 @@ namespace VRTabletop.Clients {
             }
             if(Input.GetKeyDown(KeyCode.Space)) {
                 SendOrder();
+            }
+        }
+
+        void ChangeMode() {
+            if (Input.GetKeyDown(KeyCode.F1) || Input.GetKeyDown(KeyCode.F2)) {
+                PV.StopValidation();
+            }
+
+            if (Input.GetKeyDown(KeyCode.F1)) {
+                m = Mode.MoveMode;
+                GameMaster.SetCamMode(false);
+            } else if (Input.GetKeyDown(KeyCode.F2)) {
+                m = Mode.ShootMode;
+                GameMaster.SetCamMode(true);
+            } else if (Input.GetKeyDown(KeyCode.F3)) {
+                m = Mode.Select;
+                GameMaster.SetCamMode(false);
             }
         }
 
@@ -46,7 +64,7 @@ namespace VRTabletop.Clients {
                     //Set Player Cam inactive
                     GameMaster.setVRState(VRState.InPawn);
                 } else {
-
+                    //do somethin!
                 }
             } else if (m == Mode.MoveMode) {
                 float x = 0f;
@@ -75,6 +93,7 @@ namespace VRTabletop.Clients {
                 if (ValidateSelectedPawn(P)) {
                     Debug.Log("Pawn is Valid");
                     SelectedPawn = P;
+                    GameMaster.SetFPSCam(P.PawnCam);
                     PV.BPValidatorSetup(P);
                     //Graphicy stuff!
                 }
@@ -92,7 +111,7 @@ namespace VRTabletop.Clients {
         }
 
         void SendOrder() {
-            if (m != Mode.None) {
+            if (m != Mode.Select) {
                 if (m == Mode.MoveMode) {
                     Order O = PV.SendOrder(CommandType.Movement);
                     GameMaster.AcquireOrder(O);

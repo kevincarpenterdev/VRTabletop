@@ -27,7 +27,7 @@ public class PrototypeController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        m = Mode.None;
+        m = Mode.Select;
         //Sight.SetActive(false);
         PV.BPValidatorSetup(ControlledPawn);
         RF = new ResponseFactory();
@@ -59,14 +59,14 @@ public class PrototypeController : MonoBehaviour {
             //Sight.SetActive(true);
             ControlledPawn.PawnCam.gameObject.SetActive(true);
         } else if (Input.GetKeyDown(KeyCode.F3)) {
-            m = Mode.None;
+            m = Mode.Select;
             OverviewCam.gameObject.SetActive(true);
             //Sight.SetActive(false);
             ControlledPawn.PawnCam.gameObject.SetActive(false);
         }
     }
     void ModeCheck() {
-        if (m != Mode.None) {
+        if (m != Mode.Select) {
             PV.RunValidation(Curr);
             if (!Input.GetKeyDown(KeyCode.Space) || !Input.GetKeyDown(KeyCode.F1) || !Input.GetKeyDown(KeyCode.F2)) {
                 ControlPawn();
@@ -104,7 +104,7 @@ public class PrototypeController : MonoBehaviour {
     }
 
     void ExecutionCheck() {
-        if(m != Mode.None && Input.GetKeyDown(KeyCode.Space)) {
+        if(m != Mode.Select && Input.GetKeyDown(KeyCode.Space)) {
             Order O = PV.SendOrder(Curr);
             if(O != null) {
                 //Order Application Simulation
