@@ -13,9 +13,6 @@ namespace VRTabletop.Pawns.Validation {
         [SerializeField]
         protected CheckShot CS;
 
-        [SerializeField] public float pawnValidatorSpeed { get; private set; }
-
-        [SerializeField]
         public BasePawn Checked { get; private set; }
         public Camera PawnHeadCam { get; private set; }
         protected OrderFactory OF;

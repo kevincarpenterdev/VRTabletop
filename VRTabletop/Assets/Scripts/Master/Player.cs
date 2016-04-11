@@ -84,16 +84,16 @@ namespace VRTabletop.Clients {
                 float x = 0f;
                 float z = 0f;
                 if (Input.GetKey(KeyCode.W)) {
-                    x -= PV.pawnValidatorSpeed;
+                    x -= 5;
                 }
                 if (Input.GetKey(KeyCode.A)) {
-                    z -= PV.pawnValidatorSpeed;
+                    z -= 5;
                 }
                 if (Input.GetKey(KeyCode.S)) {
-                        x += PV.pawnValidatorSpeed;
+                    x += 5;
                 }
                 if (Input.GetKey(KeyCode.D)) {
-                        z += PV.pawnValidatorSpeed;
+                    z += 5;
                 }
                 PV.RunValidation(x , z);
             }
@@ -104,7 +104,6 @@ namespace VRTabletop.Clients {
                 BasePawn P = Obj.GetComponentInParent<BasePawn>();
                 if (P != null) {
                     if (ValidateSelectedPawn(P)) {
-
                         SelectedPawn = P;
                         GameMaster.SetFPSCam(P.PawnCam);
                         PV.BPValidatorSetup(P);

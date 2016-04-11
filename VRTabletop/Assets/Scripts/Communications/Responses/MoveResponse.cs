@@ -12,6 +12,7 @@ namespace VRTabletop.Communications {
 
 
         public MoveResponse(int i, Vector3 Loc ,CommandType CT) {
+            AppliedID = i;
             movX = Loc.x;
             movY = Loc.y;
             movZ = Loc.z;
