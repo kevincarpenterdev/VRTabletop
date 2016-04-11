@@ -67,7 +67,6 @@ public class PrototypeController : MonoBehaviour {
     }
     void ModeCheck() {
         if (m != Mode.Select) {
-            PV.RunValidation(Curr);
             if (!Input.GetKeyDown(KeyCode.Space) || !Input.GetKeyDown(KeyCode.F1) || !Input.GetKeyDown(KeyCode.F2)) {
                 ControlPawn();
             }
@@ -75,6 +74,7 @@ public class PrototypeController : MonoBehaviour {
     }
     void ControlPawn() {
         if(m == Mode.ShootMode) {
+            PV.RunValidation();
             if(VR == VRState.Overview) {
                 //Set VR Camera Active
                 //Set Player Cam inactive

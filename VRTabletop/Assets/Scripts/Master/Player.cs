@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
+using System;
+
 using VRTabletop.Pawns;
 using VRTabletop.Pawns.Validation;
 using VRTabletop.Communications;
@@ -31,11 +33,22 @@ namespace VRTabletop.Clients {
             if (Input.GetMouseButtonDown(0) && m == Mode.Select) {
                 SelectPawn(PC.ClickOnGameObject(Input.mousePosition));                
             }
-            if (PV.hasPawn()) {
+            if (PV.hasPawn() && m != Mode.Select) {         
                 ControlPawn();
             }
             if(Input.GetKeyDown(KeyCode.Space)) {
                 SendOrder();
+            }
+        }
+
+        CommandType GetCT() {
+            if(m == Mode.ShootMode) {
+               return CommandType.TargetAbility;
+            }
+            if(m == Mode.MoveMode) {
+               return CommandType.Movement;
+            } else {
+                throw new InvalidOperationException();
             }
         }
 
@@ -58,6 +71,7 @@ namespace VRTabletop.Clients {
 
         void ControlPawn() {
            if (m == Mode.ShootMode) {                 
+
                 //We'll need a VR Controller, We'll cross this bridge once we get to the rift
                 if (GameMaster.VR == VRState.Overview) {
                     //Set VR Camera Active

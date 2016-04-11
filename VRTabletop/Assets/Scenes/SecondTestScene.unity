@@ -112,7 +112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b986e84a5af73c7499b9b031c3edc1be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectedPawn: {fileID: 2103571839}
+  ThisPlayersPawns:
+  - {fileID: 2103571839}
+  - {fileID: 1610284064}
+  SelectedPawn: {fileID: 0}
   PV: {fileID: 1450265821}
   m: 0
   PC: {fileID: 1768334991}
@@ -190,6 +193,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5c5eea46493c241805ec8d504153a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Pawns_In_Play:
+  - {fileID: 2103571839}
+  - {fileID: 1249523720}
+  Players:
+  - {fileID: 223925056}
+  MainCam: {fileID: 732502772}
+  FPSCam: {fileID: 0}
 --- !u!1 &481363648
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,6 +505,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!1001 &777219999
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 449744, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 4.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 449744, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 449744, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -7.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 449744, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 449744, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 449744, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 449744, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 449744, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 136212, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
+      propertyPath: m_Name
+      value: Dummy Pawn (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 11406892, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
+      propertyPath: ID
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 9c8c7638e4bb52143b7f82b15764c6a2, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &803759628
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,6 +918,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1729301476}
   m_Script: {fileID: 11500000, guid: 5cca1d353a8000f47ab5d62c11ab3ee9, type: 3}
+--- !u!114 &1610284064 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11406892, guid: 9c8c7638e4bb52143b7f82b15764c6a2,
+    type: 2}
+  m_PrefabInternal: {fileID: 777219999}
+  m_Script: {fileID: 11500000, guid: 7e2298c0f6a101643afc9299e601b8b6, type: 3}
 --- !u!1001 &1729301476
 Prefab:
   m_ObjectHideFlags: 0

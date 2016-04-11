@@ -52,17 +52,9 @@ namespace VRTabletop.Pawns.Validation {
 
 
         //Run this in an update loop
-        public void RunValidation(CommandType C) {
-            switch (C) {
-                case CommandType.TargetAbility:
+        public void RunValidation() {
                     CS.StartValidation();
                     isValid = ValidateShot();
-                    break;
-                default:
-                    Debug.Log("Nothin here!");
-                    isValid = false;
-                    break;
-            }
         }
 
         //Called once
