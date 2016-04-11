@@ -44,15 +44,15 @@ namespace VRTabletop.Clients {
                 PV.StopValidation();
             }
 
-            if (Input.GetKeyDown(KeyCode.F1)) {
+            if (Input.GetKeyDown(KeyCode.F1) && SelectedPawn != null) {
                 m = Mode.MoveMode;
                 GameMaster.SetCamMode(false);
-            } else if (Input.GetKeyDown(KeyCode.F2)) {
+            } else if (Input.GetKeyDown(KeyCode.F2) && SelectedPawn != null) {
                 m = Mode.ShootMode;
                 GameMaster.SetCamMode(true);
             } else if (Input.GetKeyDown(KeyCode.F3)) {
                 m = Mode.Select;
-                GameMaster.SetCamMode(false);
+                if (SelectedPawn != null) GameMaster.SetCamMode(false);
             }
         }
 
@@ -86,16 +86,16 @@ namespace VRTabletop.Clients {
         }
 
         void SelectPawn(GameObject Obj) {
-            Debug.Log("Hit SelectPawn!");
-            BasePawn P = Obj.GetComponentInParent<BasePawn>();
-            if(P != null) {
-                Debug.Log("Pawn exists");
-                if (ValidateSelectedPawn(P)) {
-                    Debug.Log("Pawn is Valid");
-                    SelectedPawn = P;
-                    GameMaster.SetFPSCam(P.PawnCam);
-                    PV.BPValidatorSetup(P);
-                    //Graphicy stuff!
+            if(Obj != null) {
+                BasePawn P = Obj.GetComponentInParent<BasePawn>();
+                if (P != null) {
+                    if (ValidateSelectedPawn(P)) {
+
+                        SelectedPawn = P;
+                        GameMaster.SetFPSCam(P.PawnCam);
+                        PV.BPValidatorSetup(P);
+                        //Graphicy stuff!
+                    }
                 }
             }
         }
