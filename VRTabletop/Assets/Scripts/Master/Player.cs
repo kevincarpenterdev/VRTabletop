@@ -73,7 +73,8 @@ namespace VRTabletop.Clients {
         }
 
         void ControlPawn() {
-           if (m == Mode.ShootMode) {                 
+           if (m == Mode.ShootMode) {
+                PV.RunValidation();                 
                 //We'll need a VR Controller, We'll cross this bridge once we get to the rift
                 if (GameMaster.getVRState() == VRState.InPawn) {
                     //Set VR Camera Active
@@ -146,7 +147,11 @@ namespace VRTabletop.Clients {
                     GameMaster.AcquireOrder(O);
                 } else if (m == Mode.ShootMode) {
                     Order O = PV.SendOrder(CommandType.TargetAbility);
-                    GameMaster.AcquireOrder(O);
+                    if (O != null) {
+                        GameMaster.AcquireOrder(O);
+                    } else {
+                        Debug.Log("Not a valid shot!");
+                    }
                 }
             } else {
                 Debug.Log("Can't send an order like that!");
