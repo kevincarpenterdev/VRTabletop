@@ -25,7 +25,7 @@ namespace VRTabletop {
         [SerializeField] protected Camera FPSCam;
 
         //Game Vars
-        [SerializeField] public VRState VR { get; protected set; }
+        [SerializeField] protected VRState VR;
 
         public void SetCamMode(bool FPSMode) {
             if(FPSMode == true ) {
@@ -41,8 +41,14 @@ namespace VRTabletop {
             FPSCam = C;
         }
 
+        public VRState getVRState() {
+            return VR;
+        }
+
         public void setVRState(VRState V) {
-            VR = V;
+            if(VR != VRState.Disconnected) {
+                VR = V;
+            }
         }
 
         // Use this for initialization

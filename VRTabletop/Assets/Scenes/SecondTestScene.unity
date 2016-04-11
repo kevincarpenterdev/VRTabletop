@@ -126,7 +126,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 223925055}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9567661, y: 7.045562, z: 0.76572305}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1450265820}
@@ -196,10 +196,12 @@ MonoBehaviour:
   Pawns_In_Play:
   - {fileID: 2103571839}
   - {fileID: 1249523720}
+  - {fileID: 1610284064}
   Players:
   - {fileID: 223925056}
   MainCam: {fileID: 732502772}
   FPSCam: {fileID: 0}
+  VR: 1
 --- !u!1 &481363648
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,7 +896,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1450265819}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9567661, y: -7.045562, z: -0.76572305}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 223925057}

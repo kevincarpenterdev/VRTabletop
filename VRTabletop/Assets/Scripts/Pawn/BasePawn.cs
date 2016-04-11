@@ -28,6 +28,11 @@ namespace VRTabletop.Pawns {
             Head.transform.LookAt(P.transform);
         }
 
+        public void RotateHead(float x, float y) {
+            //May need to set up a Quaternion for this but this is good for now
+            Head.transform.Rotate(x , y , 0f);
+        }
+
         public void ExecuteCommand(Response R) {
             switch(R.CMD) {
                 case CommandType.Movement:

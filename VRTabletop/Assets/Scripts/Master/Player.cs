@@ -60,29 +60,45 @@ namespace VRTabletop.Clients {
             if (Input.GetKeyDown(KeyCode.F1) && SelectedPawn != null) {
                 m = Mode.MoveMode;
                 GameMaster.SetCamMode(false);
+                GameMaster.setVRState(VRState.Overview);
             } else if (Input.GetKeyDown(KeyCode.F2) && SelectedPawn != null) {
                 m = Mode.ShootMode;
                 GameMaster.SetCamMode(true);
+                GameMaster.setVRState(VRState.InPawn);
             } else if (Input.GetKeyDown(KeyCode.F3)) {
                 m = Mode.Select;
                 if (SelectedPawn != null) GameMaster.SetCamMode(false);
+                GameMaster.setVRState(VRState.Overview);
             }
         }
 
         void ControlPawn() {
            if (m == Mode.ShootMode) {                 
-
                 //We'll need a VR Controller, We'll cross this bridge once we get to the rift
-                if (GameMaster.VR == VRState.Overview) {
+                if (GameMaster.getVRState() == VRState.InPawn) {
                     //Set VR Camera Active
                     //Set Player Cam inactive
-                    GameMaster.setVRState(VRState.InPawn);
                 } else {
-                    //do somethin!
+                    float rx = 0f;
+                    float ry = 0f;
+                    if (Input.GetKey(KeyCode.W)) {
+                        rx -= .5f;
+                    }
+                    if (Input.GetKey(KeyCode.A)) {
+                        ry -= .5f;
+                    }
+                    if (Input.GetKey(KeyCode.S)) {
+                        rx += .5f;
+                    }
+                    if (Input.GetKey(KeyCode.D)) {
+                        ry += .5f;
+                    }
+                    SelectedPawn.RotateHead(rx,ry);
                 }
             } else if (m == Mode.MoveMode) {
                 float x = 0f;
                 float z = 0f;
+                //We need better solution than hardcoded #
                 if (Input.GetKey(KeyCode.W)) {
                     x -= 5;
                 }
