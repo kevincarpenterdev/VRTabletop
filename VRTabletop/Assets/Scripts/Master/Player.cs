@@ -39,6 +39,9 @@ namespace VRTabletop.Clients {
             if(Input.GetKeyDown(KeyCode.Space)) {
                 SendOrder();
             }
+            if (Input.GetKeyDown(KeyCode.Tab)) {
+                GameMaster.passTurn();
+            }
         }
 
         CommandType GetCT() {

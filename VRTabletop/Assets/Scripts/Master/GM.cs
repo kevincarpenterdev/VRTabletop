@@ -69,7 +69,12 @@ namespace VRTabletop {
         }
 
         public void passTurn() {
-            throw new NotImplementedException();
+            if (PlayerTurn + 1 == Players.Count) {
+                PlayerTurn = 0;
+            } else {
+                PlayerTurn++;
+            }
+            Debug.Log("Player " + PlayerTurn + "'s Turn");
         }
 
         public void AcquireOrder(Order O) {
