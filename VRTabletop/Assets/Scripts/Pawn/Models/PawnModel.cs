@@ -4,8 +4,9 @@ using System.Collections;
 namespace VRTabletop.Pawns {
     public class PawnModel : MonoBehaviour {
 
-        //I gave em the full name to 
+        //I gave em the full name mainly for readability
 
+        public int HP;
         public int BallisticSkill;
         public int CloseCombat;
         public int Physique;

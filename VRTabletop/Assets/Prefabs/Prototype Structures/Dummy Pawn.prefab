@@ -59,6 +59,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 449744}
   - 114: {fileID: 11406892}
+  - 114: {fileID: 11490548}
+  - 114: {fileID: 11460370}
   m_Layer: 0
   m_Name: Dummy Pawn
   m_TagString: Untagged
@@ -479,6 +481,7 @@ MonoBehaviour:
   ID: 0
   PawnCam: {fileID: 2015900}
   CS: {fileID: 11482030}
+  PM: {fileID: 11490548}
   HP: 1
   Head: {fileID: 139442}
 --- !u!114 &11456964
@@ -498,6 +501,19 @@ MonoBehaviour:
   InvalidMat: {fileID: 2100000, guid: 5abdf4349fc6ba347bec9246351b30e9, type: 2}
   CC: {fileID: 14328132}
   VisualCheck: {fileID: 151626}
+--- !u!114 &11460370
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df6a98f72d1fb3147ab746db1b5675f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  burst: 0
 --- !u!114 &11474492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -526,6 +542,23 @@ MonoBehaviour:
   Target: {fileID: 0}
   Validating: 0
   PC: {fileID: 11474492}
+--- !u!114 &11490548
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 784aa918e50a14a439bb8fda3a16358f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BallisticSkill: 0
+  CloseCombat: 0
+  Physique: 0
+  Willpower: 0
+  MoveRange: 0
+  Weapon: {fileID: 11460370}
 --- !u!120 &12036558
 LineRenderer:
   m_ObjectHideFlags: 1

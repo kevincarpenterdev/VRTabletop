@@ -12,10 +12,8 @@ namespace VRTabletop.Pawns {
         //Unity Stuff
         [SerializeField] public Camera PawnCam;
         [SerializeField] protected CheckShot CS;
+        [SerializeField] protected PawnModel PM;
 
-        //Game Stuff
-        public int HP;
-        //TODO Impliment other stats
         
         public CheckShot GetCS() {
             return CS;
@@ -42,8 +40,8 @@ namespace VRTabletop.Pawns {
                     break;
                 case CommandType.TargetAbility:
                     DamageResponse DamRes = (DamageResponse)R;
-                    HP += DamRes.HPChange;
-                    if (HP < 0) {
+                    PM.HP += DamRes.HPChange;
+                    if (PM.HP < 0) {
                         Destroy(this.gameObject);
                         return;
                     }
