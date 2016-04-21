@@ -27,6 +27,8 @@ namespace VRTabletop {
         //Game Vars
         [SerializeField] protected VRState VR;
 
+
+        //Set Cam Transform Anchor method needed
         public void SetCamMode(bool FPSMode) {
             if(FPSMode == true ) {
                 MainCam.gameObject.SetActive(false);
