@@ -21,26 +21,22 @@ namespace VRTabletop {
         protected int PlayerTurn;
         protected ResponseFactory RF;
 
-        [SerializeField] protected Camera MainCam;
-        [SerializeField] protected Camera FPSCam;
+        [SerializeField] protected CameraController MainCam;
 
         //Game Vars
         [SerializeField] protected VRState VR;
 
 
-        //Set Cam Transform Anchor method needed
         public void SetCamMode(bool FPSMode) {
             if(FPSMode == true ) {
-                MainCam.gameObject.SetActive(false);
-                FPSCam.gameObject.SetActive(true);
+                MainCam.GoToFPS();
             } else {
-                MainCam.gameObject.SetActive(true);
-                FPSCam.gameObject.SetActive(false);
+                MainCam.GoToOverview();
             }
         }
 
-        public void SetFPSCam(Camera C) {
-            FPSCam = C;
+        public void SetFPSCam(Transform T) {
+            MainCam.SetFPSPosition(T);
         }
 
         public VRState getVRState() {

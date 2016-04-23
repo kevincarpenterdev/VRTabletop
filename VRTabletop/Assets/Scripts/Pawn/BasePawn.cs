@@ -10,7 +10,6 @@ namespace VRTabletop.Pawns {
         [SerializeField] public int ID; //{ get;  private set; }
 
         //Unity Stuff
-        [SerializeField] public Camera PawnCam;
         [SerializeField] protected CheckShot CS;
         [SerializeField] protected PawnModel PM;
 
@@ -19,18 +18,21 @@ namespace VRTabletop.Pawns {
             return CS;
         }
 
-        //And Trash this method once we get VR running
+        
         [SerializeField]
         protected GameObject Head;
-        public void LookAtPawn(BasePawn P) {
-            Head.transform.LookAt(P.transform);
-        }
 
+        //For M+K Testing
         public void RotateHead(float x, float y) {
             //May need to set up a Quaternion for this but this is good for now
             
             Head.transform.Rotate(x , y , 0f);
         }
+
+        public Transform GetHead() {
+            return Head.transform;
+        }
+
 
         public void ExecuteCommand(Response R) {
             switch(R.CMD) {

@@ -19,8 +19,10 @@ namespace VRTabletop.Clients {
         [SerializeField] protected BasePawnValidator PV;
         [SerializeField] protected Mode m;
         [SerializeField] PointerController PC;
+        protected InputHandler IH;
 
         void Start() {
+            IH = new InputHandler();
             m = Mode.Select;
         }
 
@@ -125,7 +127,7 @@ namespace VRTabletop.Clients {
                 if (P != null) {
                     if (ValidateSelectedPawn(P)) {
                         SelectedPawn = P;
-                        GameMaster.SetFPSCam(P.PawnCam);
+                        GameMaster.SetFPSCam(P.GetHead());
                         PV.BPValidatorSetup(P);
                         //Graphicy stuff!
                     }

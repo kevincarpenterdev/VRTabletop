@@ -7,7 +7,7 @@ using VRTabletop.Pawns.Validation;
 using VRTabletop.Utils;
 
 public class PrototypeController : MonoBehaviour {
-
+    /*
     public BasePawn ControlledPawn;
     public BasePawn TargetPawn;
 
@@ -108,8 +108,8 @@ public class PrototypeController : MonoBehaviour {
             Order O = PV.SendOrder(Curr);
             if(O != null) {
                 //Order Application Simulation
-                /*string OrderString = OrderFormatter.serialize(O);
-                Response R = OrderFormatter.deserialize(OrderString); */
+                //string OrderString = OrderFormatter.serialize(O);
+                //Response R = OrderFormatter.deserialize(OrderString);
                 Response R = RF.GenerateNonValidResponse(O);
                 ExecuteOrder(R);
             }
@@ -124,5 +124,5 @@ public class PrototypeController : MonoBehaviour {
     }
     void SetCommand(CommandType C) {
         Curr = C;
-    }
+    } */
 }
