@@ -192,7 +192,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105380}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 410824}
@@ -254,7 +254,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 136212}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -7.11}
+  m_LocalPosition: {x: 0, y: 0, z: 5.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 475644}
@@ -478,11 +478,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2298c0f6a101643afc9299e601b8b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 0
+  ID: 1
   PawnCam: {fileID: 2015900}
   CS: {fileID: 11482030}
   PM: {fileID: 11490548}
-  HP: 1
   Head: {fileID: 139442}
 --- !u!114 &11456964
 MonoBehaviour:
@@ -553,6 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 784aa918e50a14a439bb8fda3a16358f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 0
   BallisticSkill: 0
   CloseCombat: 0
   Physique: 0
