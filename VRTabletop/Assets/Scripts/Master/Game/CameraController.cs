@@ -23,11 +23,13 @@ public class CameraController : MonoBehaviour {
     public void GoToOverview() {
         transform.position = OverviewPoint.position;
         transform.rotation = OverviewPoint.rotation;
+        transform.parent = OverviewPoint;
     }
 
     public void GoToFPS() {
         transform.position = FPSPoint.position;
         transform.rotation = FPSPoint.rotation;
+        transform.parent = FPSPoint;
     }
 
 }
