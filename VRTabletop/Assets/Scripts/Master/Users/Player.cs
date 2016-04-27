@@ -19,10 +19,8 @@ namespace VRTabletop.Clients {
         [SerializeField] protected BasePawnValidator PV;
         [SerializeField] protected Mode m;
         [SerializeField] PointerController PC;
-        protected InputHandler IH;
 
         void Start() {
-            IH = new InputHandler();
             m = Mode.Select;
         }
 
@@ -85,39 +83,12 @@ namespace VRTabletop.Clients {
                     //Set VR Camera Active
                     //Set Player Cam inactive
                 } else {
-                    float rx = 0f;
-                    float ry = 0f;
-                    if (Input.GetKey(KeyCode.W)) {
-                        rx -= .5f;
-                    }
-                    if (Input.GetKey(KeyCode.A)) {
-                        ry -= .5f;
-                    }
-                    if (Input.GetKey(KeyCode.S)) {
-                        rx += .5f;
-                    }
-                    if (Input.GetKey(KeyCode.D)) {
-                        ry += .5f;
-                    }
-                    SelectedPawn.RotateHead(rx,ry);
+                    float[] rot = InputHandler.InputWorldSpaceMove(.5f);
+                    SelectedPawn.RotateHead(rot[0],rot[1]);
                 }
             } else if (m == Mode.MoveMode) {
-                float x = 0f;
-                float z = 0f;
-                //We need better solution than hardcoded #
-                if (Input.GetKey(KeyCode.W)) {
-                    x -= 5;
-                }
-                if (Input.GetKey(KeyCode.A)) {
-                    z -= 5;
-                }
-                if (Input.GetKey(KeyCode.S)) {
-                    x += 5;
-                }
-                if (Input.GetKey(KeyCode.D)) {
-                    z += 5;
-                }
-                PV.RunValidation(x , z);
+                float[] mov = InputHandler.InputWorldSpaceMove(5f); 
+                PV.RunValidation(mov[0] , mov[1]);
             }
         }
 

@@ -2,23 +2,38 @@
 using System.Collections;
 
 
-public class InputHandler : MonoBehaviour {
+namespace VRTabletop.Utils {
+    public static class InputHandler {
 
-    public enum GameInputAction {
-        SelectObject,
-        ChangeMode,
-        SelectMenuItem,
+        /*public static bool Select() {
+            if()
+        }
 
+        public static bool InputPerspectiveChange() {
+
+        } */
+
+        public static float[] InputWorldSpaceMove(float scale) {
+            float x = 0f;
+            float z = 0f;
+
+            if (Input.GetKey(KeyCode.W)) {
+                x -= scale;
+            }
+            if (Input.GetKey(KeyCode.A)) {
+                z -= scale;
+            }
+            if (Input.GetKey(KeyCode.S)) {
+                x += scale;
+            }
+            if (Input.GetKey(KeyCode.D)) {
+                z += scale;
+            }
+            //Xbox One logic
+            return new float[] {x,z};
+        }
+        
     }
 
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }
+
