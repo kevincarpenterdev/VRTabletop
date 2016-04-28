@@ -21,7 +21,7 @@ namespace VRTabletop.Clients {
         [SerializeField] PointerController PC;
 
         void Start() {
-            m = Mode.Select;
+            m = Mode.MoveMode;
         }
 
         public void setGM(GM G) {
@@ -30,7 +30,7 @@ namespace VRTabletop.Clients {
 
         public void InputCheck() {
             ChangeMode();
-            if (Input.GetMouseButtonDown(0) && m == Mode.Select) {
+            if (InputHandler.Select() && m == Mode.Select || m == Mode.MoveMode) {
                 SelectPawn(PC.ClickOnGameObject(Input.mousePosition));                
             }
             if (PV.hasPawn() && m != Mode.Select) {         
@@ -56,29 +56,24 @@ namespace VRTabletop.Clients {
         }
 
         void ChangeMode() {
-            if (Input.GetKeyDown(KeyCode.F1) || Input.GetKeyDown(KeyCode.F2)) {
+            //old
+            if(InputHandler.InputPerspectiveChange()) {
+                if(m == Mode.MoveMode && SelectedPawn != null) {
+                    m = Mode.ShootMode;
+                    GameMaster.SetCamMode(true);
+                    GameMaster.setVRState(VRState.InPawn);
+                } else {
+                    m = Mode.MoveMode;
+                    GameMaster.SetCamMode(false);
+                    GameMaster.setVRState(VRState.Overview);
+                }
                 PV.StopValidation();
-            }
-
-            if (Input.GetKeyDown(KeyCode.F1) && SelectedPawn != null) {
-                m = Mode.MoveMode;
-                GameMaster.SetCamMode(false);
-                GameMaster.setVRState(VRState.Overview);
-            } else if (Input.GetKeyDown(KeyCode.F2) && SelectedPawn != null) {
-                m = Mode.ShootMode;
-                GameMaster.SetCamMode(true);
-                GameMaster.setVRState(VRState.InPawn);
-            } else if (Input.GetKeyDown(KeyCode.F3)) {
-                m = Mode.Select;
-                if (SelectedPawn != null) GameMaster.SetCamMode(false);
-                GameMaster.setVRState(VRState.Overview);
             }
         }
 
         void ControlPawn() {
            if (m == Mode.ShootMode) {
-                PV.RunValidation();                 
-                //We'll need a VR Controller, We'll cross this bridge once we get to the rift
+                PV.RunValidation();
                 if (GameMaster.getVRState() == VRState.InPawn) {
                     //Set VR Camera Active
                     //Set Player Cam inactive
@@ -87,6 +82,7 @@ namespace VRTabletop.Clients {
                     SelectedPawn.RotateHead(rot[0],rot[1]);
                 }
             } else if (m == Mode.MoveMode) {
+
                 float[] mov = InputHandler.InputWorldSpaceMove(5f); 
                 PV.RunValidation(mov[0] , mov[1]);
             }
