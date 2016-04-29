@@ -40,7 +40,7 @@ namespace VRTabletop.Clients {
             if (PV.hasPawn() && m != Mode.Select) {         
                 ControlPawn();
             }
-            if(Input.GetKeyDown(KeyCode.Space)) {
+            if(InputHandler.InputConfirm()) {
                 SendOrder();
             }
             if (Input.GetKeyDown(KeyCode.Tab)) {

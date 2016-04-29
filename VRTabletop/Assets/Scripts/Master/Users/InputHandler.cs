@@ -17,9 +17,15 @@ namespace VRTabletop.Utils {
                 return true;
             } 
             return false;
-            
-        } 
+        }
 
+        public static bool InputConfirm() {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("XORBumper"))
+            {
+                return true;
+            }
+            return false;
+        }
         public static float[] InputWorldSpaceMove(float scale) {
             float x = 0f;
             float z = 0f;
