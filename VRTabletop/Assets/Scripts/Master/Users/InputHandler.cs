@@ -6,14 +6,14 @@ namespace VRTabletop.Utils {
     public static class InputHandler {
 
         public static bool Select() {
-            if(Input.GetMouseButtonDown(0) /*|| A Button */) { 
+            if(Input.GetMouseButtonDown(0) || Input.GetButtonDown("XOA")) {
                 return true;
             }
             return false;
         }
 
         public static bool InputPerspectiveChange() {
-            if (Input.GetMouseButtonDown(1) || Input.GetAxis("XOTriggers") > .5f) {
+            if (Input.GetMouseButtonDown(1) || Input.GetButton("XOX")) {
                 return true;
             } 
             return false;

@@ -30,8 +30,12 @@ namespace VRTabletop.Clients {
 
         public void InputCheck() {
             ChangeMode();
-            if (InputHandler.Select() && m == Mode.Select || m == Mode.MoveMode) {
-                SelectPawn(PC.ClickOnGameObject(Input.mousePosition));                
+            if (InputHandler.Select() && (m == Mode.Select || m == Mode.MoveMode)) {
+                if (GameMaster.getVRState() == VRState.Overview){
+                    SelectPawn(PC.PointAtObject(1000f, Camera.main.transform, false));
+                } else {
+                    SelectPawn(PC.ClickOnGameObject(Input.mousePosition));
+                }
             }
             if (PV.hasPawn() && m != Mode.Select) {         
                 ControlPawn();
@@ -93,6 +97,7 @@ namespace VRTabletop.Clients {
                 BasePawn P = Obj.GetComponentInParent<BasePawn>();
                 if (P != null) {
                     if (ValidateSelectedPawn(P)) {
+                        PV.StopValidation();
                         SelectedPawn = P;
                         GameMaster.SetFPSCam(P.GetHead());
                         PV.BPValidatorSetup(P);
@@ -112,6 +117,18 @@ namespace VRTabletop.Clients {
             return false;
         }
 
+        private bool ValidateSelectedPawnByID(int i)
+        {
+            foreach (BasePawn B in ThisPlayersPawns)
+            {
+                if (i == B.ID)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         void SendOrder() {
             if (m != Mode.Select) {
                 if (m == Mode.MoveMode) {
@@ -119,6 +136,7 @@ namespace VRTabletop.Clients {
                     GameMaster.AcquireOrder(O);
                 } else if (m == Mode.ShootMode) {
                     Order O = PV.SendOrder(CommandType.TargetAbility);
+                    if (ValidateSelectedPawnByID(O.TargetID)) return;
                     if (O != null) {
                         GameMaster.AcquireOrder(O);
                     } else {

@@ -55,7 +55,6 @@ namespace VRTabletop {
             foreach(Player p in Players) {
                 p.setGM(this);
             }
-            setVRState(VRState.Disconnected);
             PlayerTurn = 0;
             RF = new ResponseFactory();
         }

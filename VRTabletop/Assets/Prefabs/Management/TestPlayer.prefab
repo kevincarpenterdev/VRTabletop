@@ -83,9 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b986e84a5af73c7499b9b031c3edc1be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ThisPlayersPawns:
-  - {fileID: 0}
-  - {fileID: 0}
+  ThisPlayersPawns: []
   SelectedPawn: {fileID: 0}
   PV: {fileID: 11416210}
   m: 1
