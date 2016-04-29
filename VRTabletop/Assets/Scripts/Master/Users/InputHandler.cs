@@ -13,7 +13,7 @@ namespace VRTabletop.Utils {
         }
 
         public static bool InputPerspectiveChange() {
-            if (Input.GetMouseButtonDown(1) || Input.GetButton("XOX")) {
+            if (Input.GetMouseButtonDown(1) || Input.GetButtonDown("XOX")) {
                 return true;
             } 
             return false;
