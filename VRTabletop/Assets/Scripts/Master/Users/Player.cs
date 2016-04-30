@@ -97,10 +97,10 @@ namespace VRTabletop.Clients {
                 BasePawn P = Obj.GetComponentInParent<BasePawn>();
                 if (P != null) {
                     if (ValidateSelectedPawn(P)) {
-                        PV.StopValidation();
+                        if(SelectedPawn != null) PV.StopValidation();
                         SelectedPawn = P;
                         GameMaster.SetFPSCam(P.GetHead());
-                        PV.BPValidatorSetup(P);
+                        PV.BPValidatorSetup(P,PC);
                         //Graphicy stuff!
                     }
                 }
@@ -136,8 +136,7 @@ namespace VRTabletop.Clients {
                     GameMaster.AcquireOrder(O);
                 } else if (m == Mode.ShootMode) {
                     Order O = PV.SendOrder(CommandType.TargetAbility);
-                    if (ValidateSelectedPawnByID(O.TargetID)) return;
-                    if (O != null) {
+                    if (O != null && !ValidateSelectedPawnByID(O.TargetID)) {
                         GameMaster.AcquireOrder(O);
                     } else {
                         Debug.Log("Not a valid shot!");

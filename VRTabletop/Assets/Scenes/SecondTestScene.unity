@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CC: {fileID: 1548876967}
-  CS: {fileID: 813971698}
+  CS: {fileID: 0}
 --- !u!4 &196285254
 Transform:
   m_ObjectHideFlags: 0
@@ -199,11 +199,11 @@ Prefab:
     - target: {fileID: 11416210, guid: afdc9bedffbd6be41a014c74a32a08d2, type: 2}
       propertyPath: CC
       value: 
-      objectReference: {fileID: 1548876967}
+      objectReference: {fileID: 0}
     - target: {fileID: 11416210, guid: afdc9bedffbd6be41a014c74a32a08d2, type: 2}
       propertyPath: CS
       value: 
-      objectReference: {fileID: 813971698}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: afdc9bedffbd6be41a014c74a32a08d2, type: 2}
   m_IsPrefabParent: 0
@@ -670,12 +670,6 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!114 &813971698 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 11482030, guid: 9c8c7638e4bb52143b7f82b15764c6a2,
-    type: 2}
-  m_PrefabInternal: {fileID: 264329573}
-  m_Script: {fileID: 11500000, guid: c8e5815b2345d0c458c2e7e3edd45b45, type: 3}
 --- !u!1 &816629919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,7 +1112,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 10904fa937c4ae84cbedbaf031f84d54, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 10904fa937c4ae84cbedbaf031f84d54, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1186,15 +1180,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 3fa79d44d2c7e2543bdccff619d5b44d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.14
+      value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3fa79d44d2c7e2543bdccff619d5b44d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.96
+      value: -0.95
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3fa79d44d2c7e2543bdccff619d5b44d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.11
+      value: -0.09
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3fa79d44d2c7e2543bdccff619d5b44d, type: 3}
       propertyPath: m_LocalRotation.x

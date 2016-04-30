@@ -32,11 +32,12 @@ namespace VRTabletop.Pawns.Validation {
             }
         }
 
-        public void BPValidatorSetup(BasePawn P) {
+        public void BPValidatorSetup(BasePawn P,PointerController PC) {
             Checked = P;
             if(Checked != null) {
                 CC = Checked.GetComponentInChildren<CheckCollider>();
-                CS = Checked.GetCS();
+                CS = Checked.GetComponentInChildren<CheckShot>();
+                CS.SetPointer(PC);
             } else {
                 throw new InvalidOperationException();
             }

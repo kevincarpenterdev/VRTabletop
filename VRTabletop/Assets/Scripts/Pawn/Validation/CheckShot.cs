@@ -5,8 +5,6 @@ using VRTabletop.Utils;
 
 namespace VRTabletop.Pawns.Validation {
     public class CheckShot : MonoBehaviour, IValidator<BasePawn> {
-        [SerializeField] protected bool Test;
-        [SerializeField] protected LineRenderer Laser;
         [SerializeField] BasePawn Target;
         [SerializeField] protected bool Validating;
         [SerializeField] protected PointerController PC;
@@ -14,16 +12,15 @@ namespace VRTabletop.Pawns.Validation {
 
         // Use this for initialization
         void Start() {
-            Test = true;
             Validating = false;
-            PC.setDebugLine(Laser);
         }
 
         void Update() {
-            if (Validating) Target = CastRay();
+            //if (Validating) Target = CastRay();
         }
 
         public BasePawn CheckValid() {
+            Target = CastRay();
             if (Target != null) {
                 return Target;
             } else {
@@ -35,6 +32,10 @@ namespace VRTabletop.Pawns.Validation {
             Validating = true;
         }
 
+        public void SetPointer(PointerController P){
+            PC = P;
+        }
+
         public void StopValidation() {
             Validating = false;
         }
@@ -44,7 +45,7 @@ namespace VRTabletop.Pawns.Validation {
         }
 
         public BasePawn CastRay() {
-            GameObject GO = PC.PointAtObject(100 , transform , Test);
+            GameObject GO = PC.PointAtObject(100 , false);
             if (GO != null) {
                 BasePawn P = GO.GetComponentInParent<BasePawn>();
                 if(P != null) {

@@ -12,12 +12,6 @@ namespace VRTabletop.Pawns {
         //Unity Stuff
         [SerializeField] protected CheckShot CS;
         [SerializeField] protected PawnModel PM;
-
-        
-        public CheckShot GetCS() {
-            return CS;
-        }
-
         
         [SerializeField]
         protected GameObject Head;
