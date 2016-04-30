@@ -7,7 +7,7 @@ namespace VRTabletop.Pawns.Validation {
     public interface IValidator<T> {
         void StartValidation();
 
-        T CheckValid();
+        T CheckValid(float range);
 
         void StopValidation();
 

@@ -19,8 +19,8 @@ namespace VRTabletop.Pawns.Validation {
             //if (Validating) Target = CastRay();
         }
 
-        public BasePawn CheckValid() {
-            Target = CastRay();
+        public BasePawn CheckValid(float range) {
+            Target = CastRay(range);
             if (Target != null) {
                 return Target;
             } else {
@@ -44,8 +44,8 @@ namespace VRTabletop.Pawns.Validation {
             return this;
         }
 
-        public BasePawn CastRay() {
-            GameObject GO = PC.PointAtObject(100 , false);
+        public BasePawn CastRay(float range) {
+            GameObject GO = PC.PointAtObject(range , false);
             if (GO != null) {
                 BasePawn P = GO.GetComponentInParent<BasePawn>();
                 if(P != null) {

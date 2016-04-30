@@ -16,6 +16,14 @@ namespace VRTabletop.Pawns {
         [SerializeField]
         protected GameObject Head;
 
+        public PawnModel GetPawnModel() {
+            return PM;
+        } 
+
+        public WeaponModel GetWeapon() {
+            return PM.Weapon;
+        }
+
         //For M+K Testing
         public void RotateHead(float x, float y) {
             //May need to set up a Quaternion for this but this is good for now

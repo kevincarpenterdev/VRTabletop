@@ -61,7 +61,7 @@ namespace VRTabletop.Pawns.Validation {
                     StopValidation();
                     return MO;
                 case CommandType.TargetAbility:
-                    BasePawn V = CS.CheckValid();
+                    BasePawn V = CS.CheckValid(Checked.GetWeapon().WeaponRange);
                     if(V != null) {
                         Order SO = OF.createOrder(C , V, -10);
                         StopValidation();

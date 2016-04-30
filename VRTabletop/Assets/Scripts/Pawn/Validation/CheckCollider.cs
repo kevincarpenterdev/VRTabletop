@@ -15,12 +15,17 @@ namespace VRTabletop.Pawns.Validation {
 
         bool valid = true;
 
-        public Transform CheckValid() {
+        public Transform CheckValid(float range) {
             if(valid) {
                 return transform;
             } else {
                 return PrevTr;
             }
+        }
+
+        public void RangeFind(float range)
+        {
+           
         }
 
         public void StartValidation() {
