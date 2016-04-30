@@ -20,7 +20,6 @@ namespace VRTabletop.Pawns.Validation {
         public bool isValid { get; private set; }
 
         void Start() {
-            isValid = false;
             OF = new OrderFactory();
         }
 
@@ -51,8 +50,7 @@ namespace VRTabletop.Pawns.Validation {
 
         //Run this in an update loop
         public void RunValidation() {
-                    CS.StartValidation();
-                    isValid = ValidateShot();
+                    CS.StartValidation();                    
         }
 
         //Called once
@@ -76,14 +74,6 @@ namespace VRTabletop.Pawns.Validation {
                 default:
                     Debug.Log("Nothin here!");
                     return null;
-            }
-        }
-
-        public bool ValidateShot() {
-            if(CS.CheckValid() != null) {
-                return true;
-            } else {
-                return false;
             }
         }
 
