@@ -55,6 +55,12 @@ namespace VRTabletop {
             foreach(Player p in Players) {
                 p.setGM(this);
             }
+            int i = 0;
+            //AutoSetup Pawns
+            foreach(BasePawn P in Pawns_In_Play){
+                P.ID = i;
+                i++; 
+            }
             PlayerTurn = 0;
             RF = new ResponseFactory();
         }
