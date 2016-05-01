@@ -43,8 +43,12 @@ namespace VRTabletop.Clients {
             if(InputHandler.InputConfirm()) {
                 SendOrder();
             }
-            if (InputHandler.InputPass()) {
-                PV.StopValidation();
+            if (InputHandler.InputPass()) {                
+                if(SelectedPawn != null) {
+                    PV.StopValidation();
+                    PV.ClearValidators();
+                    SelectedPawn = null;
+                }
                 GameMaster.passTurn();
             }
         }

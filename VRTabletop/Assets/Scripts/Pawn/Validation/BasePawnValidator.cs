@@ -88,6 +88,12 @@ namespace VRTabletop.Pawns.Validation {
             CC.StopValidation();
             CS.StopValidation();
         }
+
+        public void ClearValidators() {
+            Checked = null;
+            CC = null;
+            CS = null;
+        }
     }
 }
 
