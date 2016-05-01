@@ -26,6 +26,15 @@ namespace VRTabletop.Utils {
             }
             return false;
         }
+        public static bool InputPass()
+        {
+            if (Input.GetKeyDown(KeyCode.Tab) || Input.GetButtonDown("XOMenu"))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public static float[] InputWorldSpaceMove(float scale) {
             float x = 0f;
             float z = 0f;

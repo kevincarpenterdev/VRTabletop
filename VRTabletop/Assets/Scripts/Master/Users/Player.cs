@@ -43,7 +43,8 @@ namespace VRTabletop.Clients {
             if(InputHandler.InputConfirm()) {
                 SendOrder();
             }
-            if (Input.GetKeyDown(KeyCode.Tab)) {
+            if (InputHandler.InputPass()) {
+                PV.StopValidation();
                 GameMaster.passTurn();
             }
         }

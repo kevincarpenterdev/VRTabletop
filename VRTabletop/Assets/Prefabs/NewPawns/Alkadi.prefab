@@ -314,7 +314,7 @@ MonoBehaviour:
   CloseCombat: 0
   Physique: 0
   Willpower: 0
-  MoveRange: 0
+  MoveRange: 10
   Weapon: {fileID: 11493408}
 --- !u!114 &11418878
 MonoBehaviour:
@@ -347,6 +347,7 @@ MonoBehaviour:
   InvalidMat: {fileID: 2100000, guid: 5abdf4349fc6ba347bec9246351b30e9, type: 2}
   CC: {fileID: 14371154}
   VisualCheck: {fileID: 176936}
+  r: 0
 --- !u!114 &11491240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -375,7 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   burst: 0
-  WeaponRange: 0
+  WeaponRange: 5
 --- !u!136 &13630630
 CapsuleCollider:
   m_ObjectHideFlags: 1
