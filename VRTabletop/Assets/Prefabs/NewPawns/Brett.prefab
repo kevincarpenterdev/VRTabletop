@@ -311,7 +311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 0
   burst: 0
-  WeaponRange: 0
+  WeaponRange: 3
 --- !u!114 &11446164
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -374,7 +374,7 @@ MonoBehaviour:
   CloseCombat: 0
   Physique: 0
   Willpower: 0
-  MoveRange: 0
+  MoveRange: 5
   Weapon: {fileID: 11409684}
 --- !u!136 &13642130
 CapsuleCollider:

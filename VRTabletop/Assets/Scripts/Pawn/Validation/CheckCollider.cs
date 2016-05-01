@@ -11,9 +11,13 @@ namespace VRTabletop.Pawns.Validation {
         [SerializeField] protected CharacterController CC;
         [SerializeField] protected GameObject VisualCheck;
 
+        [SerializeField] protected float r;
+        protected bool valid;
 
-
-        bool valid = true;
+        void Start()
+        {
+            r = GetComponentInParent<PawnModel>().MoveRange;   
+        }
 
         public Transform CheckValid(float range) {
             if(valid) {
@@ -23,9 +27,21 @@ namespace VRTabletop.Pawns.Validation {
             }
         }
 
-        public void RangeFind(float range)
+        public void Setup()
         {
-           
+            valid = false;
+            ChangeMat();
+        }
+
+        public bool RangeFind()
+        {
+            if(Vector3.Distance(transform.position, PrevTr.position) <= r)
+            {
+                return true;
+            } else
+            {
+                return false;
+            }
         }
 
         public void StartValidation() {
@@ -49,14 +65,13 @@ namespace VRTabletop.Pawns.Validation {
             }
         }
 
-        void OnTriggerStay(Collider Other) {
+        /* void OnTriggerStay(Collider Other) {
 
             BasePawn PawnCheck = Other.gameObject.GetComponent<BasePawn>();
             Obstacle OCheck = Other.gameObject.GetComponent<Obstacle>();
 
             if (PawnCheck != null || OCheck != null) {
                 valid = false;
-                VisualCheck.GetComponent<MeshRenderer>().material = InvalidMat;
             }
         }
 
@@ -66,11 +81,20 @@ namespace VRTabletop.Pawns.Validation {
 
             if (PawnCheck == null && OCheck == null) {
                 valid = true;
+            }
+        } */
+        public void ChangeMat() {
+            if (valid) {
                 VisualCheck.GetComponent<MeshRenderer>().material = ValidMat;
+            } else{
+                VisualCheck.GetComponent<MeshRenderer>().material = InvalidMat;
             }
         }
+
         public void MoveChecker(float x, float z) {
             CC.Move(new Vector3(x ,0f, z)*Time.deltaTime);
+            valid = RangeFind();
+            ChangeMat();
         }
     }
 }

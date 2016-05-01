@@ -60,7 +60,6 @@ namespace VRTabletop.Clients {
         }
 
         void ChangeMode() {
-            //old
             if(InputHandler.InputPerspectiveChange()) {
                 if(m == Mode.MoveMode && SelectedPawn != null) {
                     m = Mode.ShootMode;
@@ -79,8 +78,7 @@ namespace VRTabletop.Clients {
            if (m == Mode.ShootMode) {
                 PV.RunValidation();
                 if (GameMaster.getVRState() == VRState.InPawn) {
-                    //Set VR Camera Active
-                    //Set Player Cam inactive
+                    //Let VR Head Tracking handle it
                 } else {
                     float[] rot = InputHandler.InputWorldSpaceMove(.5f);
                     SelectedPawn.RotateHead(rot[0],rot[1]);
@@ -133,7 +131,12 @@ namespace VRTabletop.Clients {
             if (m != Mode.Select) {
                 if (m == Mode.MoveMode) {
                     Order O = PV.SendOrder(CommandType.Movement);
-                    GameMaster.AcquireOrder(O);
+                    if(O != null) {
+                        GameMaster.AcquireOrder(O);
+                    } else {
+                        Debug.Log("Not a valid move");
+                    }
+
                 } else if (m == Mode.ShootMode) {
                     Order O = PV.SendOrder(CommandType.TargetAbility);
                     if (O != null && !ValidateSelectedPawnByID(O.TargetID)) {

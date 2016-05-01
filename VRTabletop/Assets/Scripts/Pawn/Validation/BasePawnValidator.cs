@@ -37,6 +37,7 @@ namespace VRTabletop.Pawns.Validation {
                 CC = Checked.GetComponentInChildren<CheckCollider>();
                 CS = Checked.GetComponentInChildren<CheckShot>();
                 CS.SetPointer(PC);
+                CC.Setup();
             } else {
                 throw new InvalidOperationException();
             }
@@ -57,9 +58,14 @@ namespace VRTabletop.Pawns.Validation {
         public Order SendOrder(CommandType C) {
             switch (C) {
                 case CommandType.Movement:
-                    Order MO = OF.createOrder(Checked , CC.GrabTransform());
-                    StopValidation();
-                    return MO;
+                    Transform t = CC.GrabTransform();
+                    if(t != null){
+                        Order MO = OF.createOrder(Checked, t);
+                        StopValidation();
+                        return MO;
+                    } else{
+                        return null;
+                    }
                 case CommandType.TargetAbility:
                     BasePawn V = CS.CheckValid(Checked.GetWeapon().WeaponRange);
                     if(V != null) {
