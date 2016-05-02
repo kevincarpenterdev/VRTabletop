@@ -35,7 +35,7 @@ namespace VRTabletop.Clients {
         }
 
         public void InputCheck() {
-            ChangeMode();
+            if(SelectedPawn != null) ChangeMode();
             if (InputHandler.Select() && (m == Mode.Select || m == Mode.MoveMode)) {
                 if (GameMaster.getVRState() == VRState.Overview){
                     SelectPawn(PC.PointAtObject(1000f, Camera.main.transform, false));
@@ -85,11 +85,11 @@ namespace VRTabletop.Clients {
             if(InputHandler.InputPerspectiveChange()) {
                 if(m == Mode.MoveMode && SelectedPawn != null) {
                     m = Mode.ShootMode;
-                    GameMaster.SetCamMode(true);
+                    GameMaster.SetCamMode(true, SelectedPawn.GetWeapon());
                     GameMaster.setVRState(VRState.InPawn);
                 } else {
                     m = Mode.MoveMode;
-                    GameMaster.SetCamMode(false);
+                    GameMaster.SetCamMode(false, SelectedPawn.GetWeapon());
                     GameMaster.setVRState(VRState.Overview);
                 }
                 PV.StopValidation();

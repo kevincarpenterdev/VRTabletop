@@ -27,11 +27,14 @@ namespace VRTabletop {
         [SerializeField] protected VRState VR;
 
 
-        public void SetCamMode(bool FPSMode) {
+        public void SetCamMode(bool FPSMode, WeaponModel WM) {
+            VRHUDController VRHC = MainCam.GetComponentInChildren<VRHUDController>();
             if(FPSMode == true ) {
-                MainCam.GoToFPS();
+                VRHC.PopulateWeapon(WM);
+                MainCam.GoToFPS();                
             } else {
                 MainCam.GoToOverview();
+                VRHC.DeactivateWeaponHUD();
             }
         }
 
