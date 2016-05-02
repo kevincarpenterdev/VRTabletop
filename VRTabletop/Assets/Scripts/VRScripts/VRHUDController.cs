@@ -24,18 +24,19 @@ public class VRHUDController : MonoBehaviour {
     protected Text ResultText;
 
     protected bool firstResult;
+    protected bool firstMessage;
 
 	// Use this for initialization
 	void Start () {
         firstResult = true;
         Results.SetActive(false);
-        Message.text = "";
+        HideMessage();
         DeactivateWeaponHUD();
 	}
 
     public void PopulateWeapon(WeaponModel WM){
         FPSZone.SetActive(true);
-        WeaponName.text = WM.WeaponName;
+        WeaponName.text = "Name: "+ WM.WeaponName;
         WeaponDamage.text = "DMG: " + WM.damage;
         WeaponBurst.text = "Burst: " + WM.burst;
         WeaponRange.text = "Range: " + WM.WeaponRange + " Meters";
@@ -43,6 +44,14 @@ public class VRHUDController : MonoBehaviour {
 
     public void DeactivateWeaponHUD(){
         FPSZone.SetActive(false);
+    }
+
+    public void SetMessaage(string msg) {
+        Message.text = msg;
+    }
+
+    public void HideMessage() {
+        Message.text = "";
     }
 
     /* We'll need to await some stuff from brett on this one...

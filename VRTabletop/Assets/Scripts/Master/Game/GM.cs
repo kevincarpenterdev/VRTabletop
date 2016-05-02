@@ -26,17 +26,24 @@ namespace VRTabletop {
         //Game Vars
         [SerializeField] protected VRState VR;
 
+        [SerializeField] protected VRHUDController VRHC;
 
-        public void SetCamMode(bool FPSMode, WeaponModel WM) {
-            VRHUDController VRHC = MainCam.GetComponentInChildren<VRHUDController>();
-            if(FPSMode == true ) {
+        public void SendMessageToHUD(string message){
+            VRHC.SetMessaage(message);
+        }
+        public void ClearMessagesInHUD(){
+            VRHC.HideMessage();
+        }
+
+        public void SetCamMode(WeaponModel WM) {
                 VRHC.PopulateWeapon(WM);
                 MainCam.GoToFPS();                
-            } else {
-                MainCam.GoToOverview();
-                VRHC.DeactivateWeaponHUD();
-            }
         }
+        public void SetCamMode() {
+            MainCam.GoToOverview();
+            VRHC.DeactivateWeaponHUD();
+        }
+
 
         public void SetFPSCam(Transform T) {
             MainCam.SetFPSPosition(T);
@@ -55,7 +62,7 @@ namespace VRTabletop {
         // Use this for initialization
         void Start() {
             //Temp
-            foreach(Player p in Players) {
+            foreach (Player p in Players) {
                 p.setGM(this);
             }
             int i = 0;
@@ -66,6 +73,7 @@ namespace VRTabletop {
             }
             PlayerTurn = 0;
             RF = new ResponseFactory();
+            VRHC = MainCam.GetComponentInChildren<VRHUDController>();
         }
 
 
@@ -75,13 +83,14 @@ namespace VRTabletop {
         }
 
         public void passTurn() {
+            Players[PlayerTurn].ForceOutOfFPS();
             if (PlayerTurn + 1 == Players.Count) {
                 PlayerTurn = 0;
             } else {
                 PlayerTurn++;
             }
             Players[PlayerTurn].StartTurn();
-            Debug.Log("Player " + PlayerTurn + "'s Turn");
+            SendMessageToHUD("Player " + PlayerTurn + "'s Turn");
         }
 
         public void AcquireOrder(Order O) {

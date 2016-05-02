@@ -56,7 +56,7 @@ namespace VRTabletop.Clients {
                     SendOrder();
                 } else
                 {
-                    Debug.Log("Not enough Orders");
+                    GameMaster.SendMessageToHUD("Not enough Orders");
                 }
 
             }
@@ -67,6 +67,14 @@ namespace VRTabletop.Clients {
                     SelectedPawn = null;
                 }
                 GameMaster.passTurn();
+            }
+        }
+
+        public void ForceOutOfFPS() {
+            if(m == Mode.ShootMode) {
+                m = Mode.MoveMode;
+                GameMaster.SetCamMode();
+                GameMaster.setVRState(VRState.Overview);
             }
         }
 
@@ -85,14 +93,15 @@ namespace VRTabletop.Clients {
             if(InputHandler.InputPerspectiveChange()) {
                 if(m == Mode.MoveMode && SelectedPawn != null) {
                     m = Mode.ShootMode;
-                    GameMaster.SetCamMode(true, SelectedPawn.GetWeapon());
+                    GameMaster.SetCamMode(SelectedPawn.GetWeapon());
                     GameMaster.setVRState(VRState.InPawn);
                 } else {
                     m = Mode.MoveMode;
-                    GameMaster.SetCamMode(false, SelectedPawn.GetWeapon());
+                    GameMaster.SetCamMode();
                     GameMaster.setVRState(VRState.Overview);
                 }
                 PV.StopValidation();
+                GameMaster.ClearMessagesInHUD();
             }
         }
 
@@ -157,7 +166,7 @@ namespace VRTabletop.Clients {
                         GameMaster.AcquireOrder(O);
                         SelectedPawn.UseOrder();
                     } else {
-                        Debug.Log("Not a valid move");
+                        GameMaster.SendMessageToHUD("Not a valid move");
                     }
 
                 } else if (m == Mode.ShootMode) {
@@ -166,11 +175,11 @@ namespace VRTabletop.Clients {
                         GameMaster.AcquireOrder(O);
                         SelectedPawn.UseOrder();
                     } else {
-                        Debug.Log("Not a valid shot!");
+                        GameMaster.SendMessageToHUD("Not a valid shot!");
                     }
                 }
             } else {
-                Debug.Log("Can't send an order like that!");
+                GameMaster.SendMessageToHUD("Can't send an order like that!");
             }
         }
     }
