@@ -13,6 +13,10 @@ namespace VRTabletop.Pawns {
         public int Willpower;
         public float MoveRange;
 
+        public string PawnName;
+        public int OrderAmt;
+
+
         //weapon statistics
         public WeaponModel Weapon;
 
