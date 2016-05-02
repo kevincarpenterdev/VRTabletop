@@ -15,6 +15,7 @@ namespace VRTabletop.Pawns {
 
         public string PawnName;
         public int OrderAmt;
+        public int OrderRefreshAmt;
 
 
         //weapon statistics

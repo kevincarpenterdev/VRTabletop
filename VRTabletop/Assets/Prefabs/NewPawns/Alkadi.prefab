@@ -449,7 +449,8 @@ MonoBehaviour:
   Willpower: 0
   MoveRange: 10
   PawnName: Alkadi
-  OrderAmt: 0
+  OrderAmt: 1
+  OrderRefreshAmt: 1
   Weapon: {fileID: 11493408}
 --- !u!114 &11417582
 MonoBehaviour:
@@ -615,6 +616,7 @@ MonoBehaviour:
   CS: {fileID: 11418878}
   PM: {fileID: 11413688}
   Head: {fileID: 150368}
+  PUI: {fileID: 11421412}
 --- !u!114 &11493408
 MonoBehaviour:
   m_ObjectHideFlags: 1

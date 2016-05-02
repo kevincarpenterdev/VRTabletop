@@ -577,6 +577,7 @@ MonoBehaviour:
   CS: {fileID: 11481740}
   PM: {fileID: 11497742}
   Head: {fileID: 168062}
+  PUI: {fileID: 11459260}
 --- !u!114 &11492710
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -628,7 +629,8 @@ MonoBehaviour:
   Willpower: 0
   MoveRange: 5
   PawnName: Brett
-  OrderAmt: 0
+  OrderAmt: 2
+  OrderRefreshAmt: 2
   Weapon: {fileID: 11409684}
 --- !u!136 &13642130
 CapsuleCollider:

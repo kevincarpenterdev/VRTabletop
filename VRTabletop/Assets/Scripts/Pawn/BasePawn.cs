@@ -16,6 +16,14 @@ namespace VRTabletop.Pawns {
         [SerializeField]
         protected GameObject Head;
 
+        [SerializeField]
+        protected PawnUIController PUI;
+
+        public void RefreshOrders(){
+            PM.OrderAmt = PM.OrderRefreshAmt;
+            PUI.UpdateOrders();
+        }
+
         public PawnModel GetPawnModel() {
             return PM;
         } 
@@ -35,6 +43,10 @@ namespace VRTabletop.Pawns {
             return Head.transform;
         }
 
+        public void UseOrder(){
+            PM.OrderAmt--;
+            PUI.UpdateOrders();
+        }
 
         public void ExecuteCommand(Response R) {
             switch(R.CMD) {
@@ -49,6 +61,7 @@ namespace VRTabletop.Pawns {
                         Destroy(this.gameObject);
                         return;
                     }
+                    PUI.UpdateStats();
                     break;
             }
 

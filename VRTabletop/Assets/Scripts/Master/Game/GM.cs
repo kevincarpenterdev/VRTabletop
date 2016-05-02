@@ -77,6 +77,7 @@ namespace VRTabletop {
             } else {
                 PlayerTurn++;
             }
+            Players[PlayerTurn].StartTurn();
             Debug.Log("Player " + PlayerTurn + "'s Turn");
         }
 

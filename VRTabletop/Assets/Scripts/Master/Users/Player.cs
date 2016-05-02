@@ -28,6 +28,12 @@ namespace VRTabletop.Clients {
             GameMaster = G;
         }
 
+        public void StartTurn(){
+            foreach (BasePawn P in ThisPlayersPawns){
+                P.RefreshOrders();
+            }
+        }
+
         public void InputCheck() {
             ChangeMode();
             if (InputHandler.Select() && (m == Mode.Select || m == Mode.MoveMode)) {
@@ -37,11 +43,22 @@ namespace VRTabletop.Clients {
                     SelectPawn(PC.ClickOnGameObject(Input.mousePosition));
                 }
             }
-            if (PV.hasPawn() && m != Mode.Select) {         
-                ControlPawn();
+            if (PV.hasPawn() && m != Mode.Select) {
+                if (SelectedPawn.GetPawnModel().OrderAmt > 0){
+                    ControlPawn();
+                } else {
+                    PV.StopValidation();
+                }
             }
             if(InputHandler.InputConfirm()) {
-                SendOrder();
+                if(SelectedPawn.GetPawnModel().OrderAmt > 0)
+                {
+                    SendOrder();
+                } else
+                {
+                    Debug.Log("Not enough Orders");
+                }
+
             }
             if (InputHandler.InputPass()) {                
                 if(SelectedPawn != null) {
@@ -138,6 +155,7 @@ namespace VRTabletop.Clients {
                     Order O = PV.SendOrder(CommandType.Movement);
                     if(O != null) {
                         GameMaster.AcquireOrder(O);
+                        SelectedPawn.UseOrder();
                     } else {
                         Debug.Log("Not a valid move");
                     }
@@ -146,6 +164,7 @@ namespace VRTabletop.Clients {
                     Order O = PV.SendOrder(CommandType.TargetAbility);
                     if (O != null && !ValidateSelectedPawnByID(O.TargetID)) {
                         GameMaster.AcquireOrder(O);
+                        SelectedPawn.UseOrder();
                     } else {
                         Debug.Log("Not a valid shot!");
                     }
