@@ -492,7 +492,7 @@ MonoBehaviour:
   Physique: 0
   Willpower: 0
   MoveRange: 3
-  PawnName: 
+  PawnName: Jared
   OrderAmt: 3
   OrderRefreshAmt: 3
   Weapon: {fileID: 11490502}

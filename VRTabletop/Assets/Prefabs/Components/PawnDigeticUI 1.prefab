@@ -28,7 +28,7 @@ GameObject:
   - 4: {fileID: 493098}
   - 114: {fileID: 11434742}
   m_Layer: 0
-  m_Name: PawnDigeticUI
+  m_Name: PawnDigeticUI 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
