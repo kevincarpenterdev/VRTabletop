@@ -13,6 +13,9 @@ namespace VRTabletop.Pawns.Validation {
 
         [SerializeField] protected float r;
         protected bool valid;
+        protected bool FirstMove;
+
+
 
         void Start()
         {
@@ -29,6 +32,7 @@ namespace VRTabletop.Pawns.Validation {
 
         public void Setup()
         {
+            FirstMove = true;
             valid = false;
             ChangeMat();
         }
@@ -46,6 +50,8 @@ namespace VRTabletop.Pawns.Validation {
 
         public void StartValidation() {
             VisualCheck.SetActive(true);
+
+            ChangeMat();
         }
 
         public void StopValidation() {
@@ -58,7 +64,7 @@ namespace VRTabletop.Pawns.Validation {
         }
 
         public Transform GrabTransform() {
-            if(valid) {
+            if(valid && FirstMove == false) {
                 return transform;
             } else {
                 return null;
@@ -93,6 +99,7 @@ namespace VRTabletop.Pawns.Validation {
 
         public void MoveChecker(float x, float z) {
             CC.Move(new Vector3(x ,0f, z)*Time.deltaTime);
+            if (x > 0f || z > 0f) FirstMove = false;
             valid = RangeFind();
             ChangeMat();
         }

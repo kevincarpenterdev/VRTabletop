@@ -50,7 +50,7 @@ namespace VRTabletop.Clients {
                     PV.StopValidation();
                 }
             }
-            if(InputHandler.InputConfirm()) {
+            if(InputHandler.InputConfirm() && SelectedPawn != null) {
                 if(SelectedPawn.GetPawnModel().OrderAmt > 0)
                 {
                     SendOrder();
