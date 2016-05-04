@@ -22,6 +22,7 @@ namespace VRTabletop.Clients {
 
         void Start() {
             m = Mode.MoveMode;
+            foreach (BasePawn p in ThisPlayersPawns) p.SetOwned(this);
         }
 
         public void setGM(GM G) {
@@ -35,7 +36,9 @@ namespace VRTabletop.Clients {
         }
 
         public void InputCheck() {
-            if(SelectedPawn != null) ChangeMode();
+            if (SelectedPawn != null)
+                ChangeMode();
+
             if (InputHandler.Select() && (m == Mode.Select || m == Mode.MoveMode)) {
                 if (GameMaster.getVRState() == VRState.Overview){
                     SelectPawn(PC.PointAtObject(1000f, Camera.main.transform, false));
@@ -172,7 +175,7 @@ namespace VRTabletop.Clients {
                 } else if (m == Mode.ShootMode) {
                     Order O = PV.SendOrder(CommandType.TargetAbility);
                     if (O != null && !ValidateSelectedPawnByID(O.TargetID)) {
-                        GameMaster.AcquireOrder(O, SelectedPawn.GetPawnModel(), O.TargetID);
+                        GameMaster.AcquireOrder(O, SelectedPawn, O.TargetID);
                         SelectedPawn.UseOrder();
                     } else {
                         GameMaster.SendMessageToHUD("Not a valid shot!");

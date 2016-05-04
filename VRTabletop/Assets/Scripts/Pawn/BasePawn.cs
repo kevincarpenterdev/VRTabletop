@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using VRTabletop.Communications;
 using VRTabletop.Pawns.Validation;
+using VRTabletop.Clients;
 
 namespace VRTabletop.Pawns {
     public class BasePawn : MonoBehaviour, ICommandable {
@@ -18,6 +19,14 @@ namespace VRTabletop.Pawns {
 
         [SerializeField]
         protected PawnUIController PUI;
+
+        [SerializeField]
+        protected Player Owned;
+
+        public void SetOwned(Player P)
+        {
+            Owned = P;
+        }
 
         public void RefreshOrders(){
             PM.OrderAmt = PM.OrderRefreshAmt;
@@ -57,7 +66,8 @@ namespace VRTabletop.Pawns {
                 case CommandType.TargetAbility:
                     DamageResponse DamRes = (DamageResponse)R;
                     PM.HP += DamRes.HPChange;
-                    if (PM.HP < 0) {
+                    if (PM.HP <= 0) {
+                        Owned.ForceOutOfFPS();
                         Destroy(this.gameObject);
                         return;
                     }

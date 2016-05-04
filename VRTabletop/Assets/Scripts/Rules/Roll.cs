@@ -30,7 +30,7 @@ namespace VRTabletop.Rules
                 {
                     attackRolls[x, 1] = 1;
                     attackRolls[x, 2] = 1;
-                    //defenseDamage++;
+
                 }
                 else
                 {
@@ -46,7 +46,7 @@ namespace VRTabletop.Rules
             {
                 defenseRolls[1] = 1;
                 defenseRolls[2] = 1;
-                //attackDamage++;
+
             }
             else
             {
@@ -62,14 +62,12 @@ namespace VRTabletop.Rules
                     if (attackRolls[x, 0] < defenseRolls[0] && defenseRolls[1] != 0)
                     {
                         attackRolls[x, 2] = 0;
-                        //defenseDamage--;
+
                     }
                     else if (attackRolls[x, 0] == defenseRolls[0] && defenseRolls[1] != 0)
                     {
                         attackRolls[x, 2] = 0;
                         defenseRolls[2] = 0;
-                        //attackDamage--;
-                        //defenseDamage--;
                     }
                     else if (attackRolls[x, 0] > defenseRolls[0] && defenseRolls[1] != 0)
                     {
@@ -86,7 +84,7 @@ namespace VRTabletop.Rules
             defenseDamage = defenseRolls[2];
 
             //Populate Result
-            DamageResponse damage = new DamageResponse(AO.TargetID, 0 - attackDamage, CommandType.TargetAbility);
+            DamageResponse damage = new DamageResponse(AO.TargetID, 0 - attackDamage, 0 - defenseDamage, CommandType.TargetAbility);
             damage.Result += "Attacker Shots:\n";
             for (int x = 0; x < AO.attackNum; x++)
             {

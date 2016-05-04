@@ -16,15 +16,18 @@ namespace VRTabletop.Utils {
             if(O is MoveOrder) {
                 MoveOrder MO = (MoveOrder)O;
                 return new MoveResponse(O.TargetID , new Vector3(MO.TarX,MO.TarY,MO.TarZ), CommandType.Movement);
+                /*
             } else if(O is AttackOrder) {
                 AttackOrder AO = (AttackOrder)O;
                 return new DamageResponse(O.TargetID , AO.HPChange , CommandType.TargetAbility);
+                */
             }
+
             throw new InvalidOperationException();
         }
 
         //Get Attack order
-        public Response GenerateNonValidResponse(Order O, PawnModel PM, PawnModel target)
+        public Response GenerateNonValidResponse(Order O, BasePawn PM, PawnModel target)
         {
             GeneralRules rules = new GeneralRules();
             Roll roll = new Roll();
