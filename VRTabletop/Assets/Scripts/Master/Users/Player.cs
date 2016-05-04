@@ -172,7 +172,7 @@ namespace VRTabletop.Clients {
                 } else if (m == Mode.ShootMode) {
                     Order O = PV.SendOrder(CommandType.TargetAbility);
                     if (O != null && !ValidateSelectedPawnByID(O.TargetID)) {
-                        GameMaster.AcquireOrder(O);
+                        GameMaster.AcquireOrder(O, SelectedPawn.GetPawnModel(), O.TargetID);
                         SelectedPawn.UseOrder();
                     } else {
                         GameMaster.SendMessageToHUD("Not a valid shot!");

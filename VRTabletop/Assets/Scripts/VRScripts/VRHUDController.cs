@@ -54,13 +54,13 @@ public class VRHUDController : MonoBehaviour {
         Message.text = "";
     }
 
-    /* We'll need to await some stuff from brett on this one...
-    public void Populate(whatever the result will be passed in as) {
+    // We'll need to await some stuff from brett on this one...
+    public void PopulateResults(string Result) {
          if(firstResult) {
             Results.SetActive(true);
             firstResult=false;
          }
+        ResultText.text = Result;
     }
-    */
 
 }

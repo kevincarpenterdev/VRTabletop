@@ -99,6 +99,11 @@ namespace VRTabletop {
             ApplyResponse(RF.GenerateNonValidResponse(O));
         }
 
+        public void AcquireOrder(Order O, PawnModel attacker, int target)
+        {
+            ApplyResponse(RF.GenerateNonValidResponse(O, attacker, Pawns_In_Play[target].GetPawnModel()));
+        }
+
         //Grab the response from the Rulebook and apply it, though for now we are short cutting it....
         public void ApplyResponse(Response R) {
             BasePawn TargetPawn = Pawns_In_Play[R.AppliedID];
@@ -110,7 +115,7 @@ namespace VRTabletop {
             } else {
                 throw new ArgumentNullException();
             }
-
+            VRHC.PopulateResults(R.Result);
         }
 
     }

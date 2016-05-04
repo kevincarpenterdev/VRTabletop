@@ -6,6 +6,7 @@ namespace VRTabletop.Communications {
 
         public int AppliedID { get; protected set; }
         public CommandType CMD { get; protected set; }
+        public string Result;
 
         public abstract void Apply();
 
