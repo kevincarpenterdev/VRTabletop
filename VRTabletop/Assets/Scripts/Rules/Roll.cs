@@ -101,6 +101,7 @@ namespace VRTabletop.Rules
                 {
                     damage.Result += "Negated";
                 }
+                damage.Result += "\n";
             }
             damage.Result += "\nDefender Shot:\n" + defenseRolls[0] + ": ";
             if(defenseRolls[1] == 1 && defenseRolls[2] != 0)
