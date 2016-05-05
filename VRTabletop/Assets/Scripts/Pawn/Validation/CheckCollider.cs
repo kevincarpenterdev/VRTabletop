@@ -98,7 +98,7 @@ namespace VRTabletop.Pawns.Validation {
         }
 
         public void MoveChecker(float x, float z) {
-            CC.Move(new Vector3(x ,0f, z)*Time.deltaTime);
+            CC.Move(new Vector3(x ,-5000f, z)*Time.deltaTime);
             if (x > 0f || z > 0f) FirstMove = false;
             valid = RangeFind();
             ChangeMat();

@@ -31,6 +31,7 @@ namespace VRTabletop.Clients {
 
         public void StartTurn(){
             foreach (BasePawn P in ThisPlayersPawns){
+                if(P!= null)
                 P.RefreshOrders();
             }
         }

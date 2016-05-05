@@ -125,7 +125,6 @@ namespace VRTabletop {
             }
             if(R.GetType() == typeof(DamageResponse)) VRHC.PopulateResults(R.Result);
         }
-
     }
 }
 
