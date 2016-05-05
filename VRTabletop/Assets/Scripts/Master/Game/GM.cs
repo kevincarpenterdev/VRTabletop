@@ -123,7 +123,7 @@ namespace VRTabletop {
             } else {
                 throw new ArgumentNullException();
             }
-            VRHC.PopulateResults(R.Result);
+            if(R.GetType() == typeof(DamageResponse)) VRHC.PopulateResults(R.Result);
         }
 
     }

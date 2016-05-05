@@ -221,7 +221,7 @@ Prefab:
     - target: {fileID: 11428596, guid: afdc9bedffbd6be41a014c74a32a08d2, type: 2}
       propertyPath: ThisPlayersPawns.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 339699932}
     - target: {fileID: 11428596, guid: afdc9bedffbd6be41a014c74a32a08d2, type: 2}
       propertyPath: ThisPlayersPawns.Array.data[2]
       value: 
@@ -309,6 +309,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 14
+--- !u!114 &339699932 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11491240, guid: e647dd0eb53e7f04b8c1768f5529a2f4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1507525545}
+  m_Script: {fileID: 11500000, guid: 7e2298c0f6a101643afc9299e601b8b6, type: 3}
 --- !u!1 &404984781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,7 +1047,7 @@ Prefab:
     - target: {fileID: 11481828, guid: d8cd53b74eae51a45a8b255c7fa90f2e, type: 2}
       propertyPath: Pawns_In_Play.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 339699932}
     - target: {fileID: 11481828, guid: d8cd53b74eae51a45a8b255c7fa90f2e, type: 2}
       propertyPath: Pawns_In_Play.Array.data[2]
       value: 
@@ -1060,7 +1066,7 @@ Prefab:
       objectReference: {fileID: 1145643851}
     - target: {fileID: 11481828, guid: d8cd53b74eae51a45a8b255c7fa90f2e, type: 2}
       propertyPath: VR
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11481828, guid: d8cd53b74eae51a45a8b255c7fa90f2e, type: 2}
       propertyPath: Pawns_In_Play.Array.data[3]
